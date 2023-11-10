@@ -1,0 +1,22 @@
+O esquema de animações com o Hook useLottieAnimations foi pensado para ter controle total das animações, frame-by-frame.
+
+O esquema de Looping dificulta um pouca nas transições, porém é possível (com a implementação que foi feita) desativar o looping e acionar outros prâmetros de controle.
+
+tipos de animações:
+
+1 - Um simples loading não precisa passar nenhuma parâmtro a mais se não o animationData.
+
+2 - Uma animação que exige combinação de Looping e KeepLastFrame requer que o Looping esteja ativado, então pode passar o keepLasFrame como parâmetro da animação individualmente. O loop se refere ao segmento atual da animação (intervalo de frames), quando este chegar ao último, irá verificar o keepLastFrame e então parar a animação no último frame do intervalo. Se a sua animação está entre 1 e 50, sua animação ficará estática no frame 50.
+
+3- Animações com transição sem forceFlag. Esta animação é mais complexa, pois exige conehcer os intervalos exatos das animações dentro do arquivo lottie/json. Conhecendo isso é possível criar transições para diferentes pontos da animação. Exemplo:
+ state 1: Loading, este ficará se repetindo, até que algum estado mude. (lembrando que é preciso ativar o isLooping)
+state 2: Se o estado mudou para sucesso, então carrega uma sequência de animações: transição -> Ok
+
+state 3: caso o estado mude para 'erro' então carrega a sequência de animações: transicao -> error.
+
+Supondo que dentro deste arquivo lottie possua 4 animações (loading, transição, ok e erro) você terá que saber aonde cada um começa e termina (frames ou segundos --- 100f=1g, ja que rodamos a animação a 60fps), assim pode combiná-las.
+
+
+InitialSegment - Este cara pode ser passado se deseja executar uma animação inicial que seja diferente da definida no arquivo. Caso não passe o hook executará automaticamente o arquivo (desde o frame 1 ao último, que foi definido durante o processo de criação do mesmo);
+
+parâmetro 'action': este parâmetro passado dentro da props da Animation, é possível ser executado após a animação chegar ao seu último frame. Exemplo: Feche o modal apenas quando a animação finalizar completamente.
