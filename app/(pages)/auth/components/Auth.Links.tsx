@@ -14,13 +14,6 @@ export function AuthLinks() {
       >
         <TypographyLogin text="Esqueceu sua senha?" />
       </Link>
-      <Link
-        href="/register"
-        passHref
-        style={{ textDecoration: 'none', color: 'inherit' }}
-      >
-        <TypographyLogin text="Cadastre-se e teste grátis por 7 dias!" />
-      </Link>
     </Stack>
   );
 }

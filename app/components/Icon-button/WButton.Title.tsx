@@ -1,8 +1,8 @@
 import React, { ReactElement, ReactNode } from 'react';
 import { IconButtonTransitionProp } from './Button.Interface';
 import { IconButtonProps, Typography } from '@mui/material';
-import { useAppThemeContext } from '@/app/Theme/useAppTheme';
-import { darkTheme, lightTheme } from '@/app/Theme/themes';
+import { useAppThemeContext } from '@/app/context/Theme/useAppTheme';
+import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
 
 
 interface WIconButtonTitleProps extends IconButtonProps {

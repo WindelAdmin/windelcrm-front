@@ -1,38 +1,168 @@
 'use client';
-import * as yup from 'yup';
 import React, { useState } from 'react';
+import * as yup from 'yup';
 import { Form } from '@unform/web';
 import { SubmitHandler } from '@unform/core';
 import Link from 'next/link';
-import { WInput } from '@/app/components/Inputs/WInput';
-
+import { InfoOutlined } from '@mui/icons-material';
 import { Box, Grid, Paper, Stack } from '@mui/material';
-import { AuthHeader } from './components/Auth.Header';
 
-import { WInputPassword } from '@/app/components/Inputs/WInputPassword';
-import { AuthLinks } from './components/Auth.Links';
-import { TypographyLogin } from '@/app/components/Typography/Typography.Auth/Typography.Link';
+
+import { WButton } from '@/app/components/Button/WButton';
+import { useAuth } from '@/app/context/userProvider/useAuth';
+import { useWForm } from '@/app/hooks/useWForm';
+import { signInSchema } from './components/Schema/Auth.schema';
+import { setErrors } from '@/utils/hooks/YupErrors';
+import { lightTheme } from '@/app/context/Theme/themes';
+import { WAlert } from '@/app/components/Alert/Alert';
 import { AuthContainer } from './components/Auth.Container';
 import { WBackdrop } from './components/Auth.Loading';
+import { AuthHeader } from './components/Auth.Header';
+import { ContainerFormAuth } from './components/Auth.ContainerForm';
+import { WInput } from '@/app/components/Inputs/WInput';
+import { WInputPassword } from '@/app/components/Inputs/WInputPassword';
+import { WButtonLoading } from '@/app/components/Button/WButton.Loading';
+import { AuthLinks } from './components/Auth.Links';
+import { TypographyLogin } from '@/app/components/Typography/Typography.Auth/Typography.Link';
 import { AuthCopyright } from './components/Auth.Copyright';
 import { AuthCookie } from './components/Auth.Cookie';
-import { regexValidatePassword } from '@/utils/Regex';
-import { setErrors } from '@/utils/hooks/YupErrors';
+import { useSnackBar } from '@/app/context/toastProvider/useToast';
 import { getAxiosClient } from '@/services/ApiService/axios.service';
-import { WButtonLoading } from '@/app/components/Button/WButton.Loading';
-import { ContainerFormAuth } from './components/Auth.ContainerForm';
+import { api } from '@/services/ApiService/api.service';
+
+export interface SignInProps {
+  email: string
+  password: string
+  confirmPassword?: string
+}
+
+
 export default function AuthPage() {
+  const auth = useAuth();
+  const { formRef } = useWForm();
+  const { showSnackBar } = useSnackBar();
   const [backdrop, setBackdrop] = useState(false);
-  const handleSignIn= async ()=> {
-    const response = await getAxiosClient().post('/login',{
-      email:"master@outlook.com",
-      password: "1q2w3e4r"
-    })
+
+  const handleSignIn: SubmitHandler<SignInProps> = (values) => {
+    
+    
+    signInSchema
+      .validate(values, { abortEarly: false })
+      .then(async () => {
+          const response = await api.get('/login');
+          console.log("response",response.data);
+        // await auth.authenticate(
+        //   values.email,
+        //   values.password,
+        //   setBackdrop,
+        //   backdrop
+        // );
+      })
+      .catch((errors: yup.ValidationError) => {
+        setErrors({ formRef, errors });
+        console.log(errors)
+      });
   };
+
   const displayModal = () => {
-    console.log("Display Modal")
+    if (auth.userNotFound) {
+      return (
+        <WAlert
+          title="Usuário não encontrado"
+          text="Desculpe, não encontramos um usuário vinculado ao seu e-mail em nossa base de dados."
+          open={auth.userNotFound}
+          icon={
+            <InfoOutlined
+              sx={{ color: lightTheme.palette.error.light, fontSize: '3rem' }}
+            />
+          }
+        >
+          <WButton
+            textButton="Ok, Entendi"
+            color="info"
+            fullWidth
+            onClick={() => auth.closeUserNotFoundModal()}
+            sx={{
+              margin: '.5rem',
+              borderRadius: '10px',
+            }}
+          />
+        </WAlert>
+      );
+    }
+    if (auth.hasAuthError) {
+      return (
+        <WAlert
+          title="Ops! Algo deu errado"
+          text="Desculpe, no momento estamos em processo de atualização do sistema. Por favor, tente novamente em alguns minutos. Agradecemos pela compreensão!"
+          open={auth.hasAuthError}
+          icon={
+            <InfoOutlined
+              sx={{ color: lightTheme.palette.error.light, fontSize: '3rem' }}
+            />
+          }
+        >
+          <WButton
+            textButton="Ok, Entendi"
+            color="info"
+            fullWidth
+            onClick={() => auth.closeHasAuthErrorModal()}
+            sx={{
+              margin: '.5rem',
+            }}
+          />
+        </WAlert>
+      );
+    }
+    if (auth.userUnauthorized) {
+      return (
+        <WAlert
+          title="Acesso não autorizado"
+          text="Você não está autorizado a acessar esta área. Por favor, faça login com as credenciais corretas."
+          open={auth.userUnauthorized}
+          icon={
+            <InfoOutlined
+              sx={{ color: lightTheme.palette.error.light, fontSize: '3rem' }}
+            />
+          }
+        >
+          <WButton
+            textButton="Ok, Entendi"
+            color="info"
+            fullWidth
+            onClick={() => auth.closeUserUnauthorizedModal()}
+            sx={{
+              margin: '.5rem',
+              borderRadius: '10px',
+            }}
+          />
+        </WAlert>
+      );
+    }
+    if (auth.userMaxNumber) {
+      return (
+        <WAlert
+          title="Limite Atingido"
+          text="O número máximo de usuários contratados foi alcançado, para contratar usuários, ligue para 0800 600 2220, ou pelo e-mail comercial@windel.com.br."
+          open={auth.userMaxNumber}
+          icon={
+            <InfoOutlined
+              sx={{ color: lightTheme.palette.error.light, fontSize: '3rem' }}
+            />
+          }
+        >
+          <WButton
+            textButton="Ok, Entendi"
+            color="info"
+            fullWidth
+            onClick={() => auth.closeUserMaxNumber()}
+            sx={{ width: '100%' }}
+          />
+        </WAlert>
+      );
+    }
     return null;
-  }
+  };
 
   return (
     <AuthContainer>
@@ -73,7 +203,7 @@ export default function AuthPage() {
             }}
           >
             <ContainerFormAuth waitTime={10}>
-              <Form onSubmit={handleSignIn} ref={null}>
+              <Form onSubmit={handleSignIn} ref={formRef}>
                 <Stack spacing={2}>
                   <WInput label="Email" name="email" fullWidth />
                   <WInputPassword label="Informe sua Senha" name="password" />
@@ -114,3 +244,5 @@ export default function AuthPage() {
     </AuthContainer>
   );
 }
+
+

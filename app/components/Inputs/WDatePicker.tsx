@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useField } from '@unform/core';
 import { DesktopDatePicker, MobileDatePicker } from '@mui/x-date-pickers';
-
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import ptBR from 'date-fns/locale/pt-BR';
+import { LocalizationProvider } from '@mui/x-date-pickers';
 interface DateDesktopMobileProps {
   label: string;
   name: string;
   readOnly?: boolean;
   size?: 'small' | 'medium';
 }
+
 
 export function WDatePicker({
   label,
@@ -31,7 +34,7 @@ export function WDatePicker({
   }, [registerField, fieldName, value]);
 
   return (
-    <>
+    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR}>
       <MobileDatePicker
         label={label}
         value={value}
@@ -84,6 +87,6 @@ export function WDatePicker({
           display: { xs: 'none', sm: 'flex', md: 'flex' },
         }}
       />
-    </>
+    </LocalizationProvider>
   );
 }

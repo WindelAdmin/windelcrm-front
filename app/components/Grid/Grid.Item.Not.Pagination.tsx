@@ -4,8 +4,8 @@ import { GridProps, Grid, Box } from '@mui/material';
 
 
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useAppThemeContext } from '@/app/Theme/useAppTheme';
-import { darkTheme, lightTheme } from '@/app/Theme/themes';
+import { useAppThemeContext } from '@/app/context/Theme/useAppTheme';
+import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
 import { WPaper } from '../Paper/Paper';
 
 

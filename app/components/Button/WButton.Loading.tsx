@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { LoadingButtonProps } from '@mui/lab';
-import { LoadingButtonTransitionProp } from '../icon-button/Button.Interface';
+import { LoadingButtonTransitionProp } from '../Icon-button/Button.Interface';
 
 export interface WButtonProps extends LoadingButtonProps {
   variant?: 'contained' | 'outlined' | 'text';

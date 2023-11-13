@@ -2,8 +2,8 @@ import React from 'react';
 import { Card, Grid } from '@mui/material';
 
 import { GridContainerFormProps } from './GridContainer.Interface';
-import { useAppThemeContext } from '@/app/Theme/useAppTheme';
-import { darkTheme, lightTheme } from '@/app/Theme/themes';
+import { useAppThemeContext } from '@/app/context/Theme/useAppTheme';
+import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
 import { TypographyTitle } from '../Typography/Typography.Title/WTypography.Title';
 
 

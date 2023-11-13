@@ -1,6 +1,6 @@
 import React from 'react';
 import { ButtonProps } from '@mui/material';
-import { ButtonTransitionProp } from '../icon-button/Button.Interface';
+import { ButtonTransitionProp } from '../Icon-button/Button.Interface';
 
 
 export interface WButtonProps extends ButtonProps {

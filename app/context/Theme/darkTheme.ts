@@ -20,7 +20,6 @@ declare module '@mui/material/styles' {
     deepGrey?: PaletteOptions['primary'];
   }
 }
-
 // Update the Button's color options to include an deepGrey option
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
@@ -50,6 +49,7 @@ const quicksand = Quicksand({
   subsets: ['latin'],
   display: 'swap',
 });
+
 export const darkTheme = createTheme({
   palette: {
     primary: {

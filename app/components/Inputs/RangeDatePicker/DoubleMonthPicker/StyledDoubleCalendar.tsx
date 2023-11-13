@@ -1,4 +1,4 @@
-import { darkTheme, lightTheme } from "@/app/Theme/themes";
+import { darkTheme, lightTheme } from "@/app/context/Theme/themes";
 
 
 export const StyledCustomDay = (isSelected: boolean, isLightTheme: boolean) => {
