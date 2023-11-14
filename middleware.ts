@@ -20,6 +20,7 @@ export async function middleware(request: NextRequest) {
     '/favicon.ico',
     '/logo/logoW.svg',
     '/policy',
+    '/dashboard'
   ];
 
   const path = request.nextUrl.pathname;
