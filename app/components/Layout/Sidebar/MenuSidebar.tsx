@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { MenuItemSidebar } from './MenuItemSidebar/MenuItemSidebar';
 import { List, Paper, colors } from '@mui/material';
-import { MenuMainProps } from './Sidebar.Interface';
 import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
 import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
 

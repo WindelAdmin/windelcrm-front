@@ -3,10 +3,7 @@ import 'app/components/Form/TraducoesYup.ts';
 import React from 'react';
 
 import { LayoutSidebarAppBar } from '../components/Layout';
-
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import ptBR from 'date-fns/locale/pt-BR';
+import { AvatarProvider } from '../context/avatarProvider';
 import ThemeRegistry from '../context/Theme/ThemeRegistry';
 
 export default function AuthenticatedLayout({
@@ -15,15 +12,12 @@ export default function AuthenticatedLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-br">
+    <html lang='en'>
       <body>
         <ThemeRegistry>
-          <LocalizationProvider
-            dateAdapter={AdapterDateFns}
-            adapterLocale={ptBR}
-          >
+          <AvatarProvider>
             <LayoutSidebarAppBar>{children}</LayoutSidebarAppBar>
-          </LocalizationProvider>
+          </AvatarProvider>
         </ThemeRegistry>
       </body>
     </html>

@@ -1,4 +1,6 @@
 import React from 'react'
+import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext'
+import { darkTheme, lightTheme } from '@/app/context/Theme/themes'
 import {
   Collapse,
   List,
@@ -11,9 +13,7 @@ import {
 import { CircleRounded, ExpandLess, ExpandMore } from '@mui/icons-material'
 import Link from 'next/link'
 import { MenuMainProps } from '../Sidebar.Interface'
-import { useAppThemeContext } from '@/app/context/theme/useAppTheme'
 import { usePathname } from 'next/navigation'
-import { darkTheme, lightTheme } from '../../../ThemeRegistry/theme'
 import { MenuSubItemProps } from './MenuSubItemSiderbar'
 
 export function MenuSubItemSidebar({

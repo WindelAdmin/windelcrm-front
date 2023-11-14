@@ -1,48 +1,69 @@
-import React from 'react';
-import { Box, Toolbar } from '@mui/material';
-import Image from 'next/image';
-import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
 import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
-
+import React, { useState } from 'react';
+import { MenuMainProps } from '../../Sidebar/Sidebar.Interface';
+import { List, Paper } from '@mui/material';
+import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
+import { MenuItemSidebar } from '../../Sidebar/MenuItemSidebar/MenuItemSidebar';
 
 export function HeaderSidebarMobile() {
   const { themeName } = useAppThemeContext();
+  const [searchData, setSearchData] = useState({
+    page: 1,
+  });
+  const menuMain: MenuMainProps[] = [
+    {
+      id: 1,
+      menuId: 'alex',
+      parent: false,
+      children: false,
+      description: 'menuInicial',
+      icon: null,
+      link: null,
+    },
+    {
+      id: 1,
+      menuId: 'alex',
+      parent: false,
+      children: false,
+      description: 'menuInicial',
+      icon: null,
+      link: null,
+    },
+  ];
+
   return (
-    <Toolbar sx={{ px: [0], height: '5rem' }}>
-      <Box
+    <>
+      <Paper
+        elevation={0}
         sx={{
-          width: '100%',
-          height: '5rem',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor:
+          overflowX: 'hidden',
+          borderRadius: 0,
+          bgcolor:
             themeName === 'light'
               ? lightTheme.palette.info.main
               : darkTheme.palette.common.black,
         }}
       >
-        <Image
-          src="/logo/logoW.svg"
-          alt="Logo Windel"
-          width={80}
-          height={40}
-          priority
-          quality={100}
-        />
-        {/* <WIconButton
-          icon={
-            <Cancel
-              sx={{
-                color:
-                  themeName === 'light'
-                    ? lightTheme.palette.common.white
-                    : darkTheme.palette.common.white,
-              }}
+        <List
+          sx={{
+            width: '100%',
+            maxWidth: 280,
+            bgcolor:
+              themeName === 'light'
+                ? lightTheme.palette.info.main
+                : darkTheme.palette.common.black,
+          }}
+        >
+          {menuMain?.map((opt: MenuMainProps, idx: number) => (
+            <MenuItemSidebar
+              key={opt.id}
+              module={opt}
+              idx={idx}
+              menuData={menuMain}
             />
-          }
-        /> */}
-      </Box>
-    </Toolbar>
+          ))}
+        </List>
+      </Paper>
+    </>
   );
 }
