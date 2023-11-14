@@ -2,15 +2,14 @@
 import React from 'react';
 import { IconButton, Typography } from '@mui/material';
 import { Close, Settings as SettingsIcon } from '@mui/icons-material';
-
-import { darkTheme, lightTheme } from '../../ThemeRegistry/theme';
-import { useAppThemeContext } from '@/app/context/theme/useAppTheme';
 import { DrawerSettings } from './DrawerSettings/DrawerSettings';
 import { DrawerDarkAndLight } from './DrawerSettings/DrawerDarkAndLight';
 import { DrawerNotifications } from './DrawerSettings/DrawerNotifications';
 import { DrawerHelp } from './DrawerSettings/DrawerHelp';
 import { DrawerFooter } from './DrawerSettings/DrawerFooter';
-import { WIconButton } from '../../Button/WButton.Icon';
+import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
+import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
+import { WIconButton } from '../../Icon-button/WButton.Icon';
 
 interface SettingsProps {
   mobile: boolean;

@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles';
 import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
 
 import { lightTheme,darkTheme } from '@/app/context/Theme/themes';
+import { useToggleDrawer } from '@/app/context/toggleDrawer/useToggleDrawer';
 
 
 interface DrawerSidebarProps {
@@ -64,8 +65,5 @@ export function DrawerDesktop({ children }: DrawerSidebarProps) {
       {children}
     </Drawer>
   );
-}
-function useToggleDrawer(): { open: any; } {
-  throw new Error('Function not implemented.');
 }
 

@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import { MenuItemSidebar } from './MenuItemSidebar/MenuItemSidebar';
 import { List, Paper, colors } from '@mui/material';
-import { fetchMenuSidebarData } from '@/app/hooks/Menu/Hook.Menu.Sidebar';
 import { MenuMainProps } from './Sidebar.Interface';
-import { darkTheme, lightTheme } from '../../ThemeRegistry/theme';
-import { useAppThemeContext } from '@/app/context/theme/useAppTheme';
+import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
+import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
 
-/* interface SidebarMenuProps {
-  toggleDrawer: () => void;
-  open: boolean;
-  toggleDrawerMobile?: (event: React.KeyboardEvent | React.MouseEvent) => void;
-} */
 
 export function SidebarMenu() {
   const { themeName } = useAppThemeContext();
@@ -18,12 +12,6 @@ export function SidebarMenu() {
     page: 1,
   });
 
-  const { data, isLoading, error, refetch } = fetchMenuSidebarData(
-    'menu',
-    searchData
-  );
-
-  const menuMain = data?.filter((reg: MenuMainProps) => reg.parent === true);
 
   return (
     <Paper
@@ -47,14 +35,7 @@ export function SidebarMenu() {
               : darkTheme.palette.common.black,
         }}
       >
-        {menuMain?.map((opt: MenuMainProps, idx: number) => (
-          <MenuItemSidebar
-            key={opt.id}
-            module={opt}
-            idx={idx}
-            menuData={data}
-          />
-        ))}
+        
       </List>
     </Paper>
   );

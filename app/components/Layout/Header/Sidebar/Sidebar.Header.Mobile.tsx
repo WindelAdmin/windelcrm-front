@@ -1,8 +1,9 @@
 import React from 'react';
 import { Box, Toolbar } from '@mui/material';
 import Image from 'next/image';
-import { useAppThemeContext } from '@/app/context/theme/useAppTheme';
-import { lightTheme, darkTheme } from '@/app/components/ThemeRegistry/theme';
+import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
+import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
+
 
 export function HeaderSidebarMobile() {
   const { themeName } = useAppThemeContext();

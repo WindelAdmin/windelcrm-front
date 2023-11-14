@@ -1,9 +1,9 @@
 import React from 'react';
 import { IconButton, IconButtonProps, colors } from '@mui/material';
 import { ZoomInMapRounded, ZoomOutMapRounded } from '@mui/icons-material';
-import { darkTheme, lightTheme } from '../../ThemeRegistry/theme';
-import { useAppThemeContext } from '@/app/context/theme/useAppTheme';
-import { IconButtonTransitionProp } from '../../Button/Button.Interface';
+import { IconButtonTransitionProp } from '../../Icon-button/Button.Interface';
+import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
+import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
 
 interface FullScreenProps extends IconButtonProps {
   toggleFullScreen: () => void;
@@ -18,7 +18,7 @@ export function FullScreen({
   const { themeName } = useAppThemeContext();
   return (
     <IconButtonTransitionProp
-      color='inherit'
+      color="inherit"
       onClick={toggleFullScreen}
       {...rest}
       sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}
@@ -45,3 +45,4 @@ export function FullScreen({
     </IconButtonTransitionProp>
   );
 }
+

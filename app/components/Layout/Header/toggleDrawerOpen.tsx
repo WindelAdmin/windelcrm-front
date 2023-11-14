@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import IconButtonMui from '@mui/material/IconButton';
 import { LastPageRounded, FirstPageRounded } from '@mui/icons-material';
 import { useToggleDrawer } from '@/app/context/toggleDrawer/useToggleDrawer';
-import { lightTheme, darkTheme } from '../../ThemeRegistry/theme';
-import { useAppThemeContext } from '@/app/context/theme/useAppTheme';
+import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
+import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
 
 export function ToggleDrawerOpen() {
   const { open, toggleDrawer } = useToggleDrawer();
@@ -13,7 +14,6 @@ export function ToggleDrawerOpen() {
   const IconButton = styled(IconButtonMui, {
     shouldForwardProp: (prop) => prop !== 'open',
   })(({ theme }) => {
-    const { themeName } = useAppThemeContext();
     return {
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
@@ -29,7 +29,7 @@ export function ToggleDrawerOpen() {
   });
   return (
     <IconButton
-      aria-label='open drawer'
+      aria-label="open drawer"
       onClick={toggleDrawer}
       sx={{
         display: { xs: 'none', sm: 'none', md: 'flex' },
@@ -51,14 +51,14 @@ export function ToggleDrawerOpen() {
     >
       {open ? (
         <FirstPageRounded
-          fontSize='small'
-          titleAccess='Fechar menu'
+          fontSize="small"
+          titleAccess="Fechar menu"
           sx={{ width: '1rem', height: '1rem' }}
         />
       ) : (
         <LastPageRounded
-          fontSize='small'
-          titleAccess='Abrir menu'
+          fontSize="small"
+          titleAccess="Abrir menu"
           sx={{ width: '1rem', height: '1rem' }}
         />
       )}

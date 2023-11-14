@@ -2,7 +2,8 @@
 import { createContext, useEffect, useState } from 'react';
 import { EmpresaProviderContextProps, EmpresaProviderProps } from './interface';
 import { parseCookies } from 'nookies';
-import { DecryptWithAES } from '@/app/utils/Functions/Crypto';
+import { decrypt } from '@/services/CryptoService/crypto.service';
+
 
 export const EmpresaContext = createContext({});
 
@@ -12,8 +13,8 @@ export function EmpresaProvider({ children }: EmpresaProviderContextProps) {
   useEffect(() => {
     const { 'nextauth.user': userCookies } = parseCookies();
     if (userCookies) {
-      const decrypt = DecryptWithAES(userCookies);
-      const { empresa } = JSON.parse(decrypt);
+      const decrypted = decrypt(userCookies);
+      const { empresa } = JSON.parse(decrypted);
       setInfoEmpresa(empresa);
     }
   }, []);

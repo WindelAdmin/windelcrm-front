@@ -3,7 +3,6 @@ import Link from 'next/link';
 import {
   Box,
   Divider,
-  IconButton,
   ListItemIcon,
   Menu,
   MenuItem,
@@ -11,20 +10,19 @@ import {
 } from '@mui/material';
 import { ClearAllRounded } from '@mui/icons-material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { darkTheme, lightTheme } from '../../ThemeRegistry/theme';
-import { useAppThemeContext } from '@/app/context/theme/useAppTheme';
-import { useAuth } from '@/app/context/useAuth';
 import { formatDistanceToNow } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { WStyledBadge } from './Sidebar/StyleBadge';
 import { TypographyTitle } from '../../Typography/Typography.Title/WTypography.Title';
 import { TypographyText } from '../../Typography/Typography.Text/WTypography.Text';
-import { fetchPageNotification } from '@/app/hooks/usePage/Hook.usePageNotification';
-import { NotificationsIcons } from '../../Pages/Notifications/Notifications.Icons';
 import { useRouter } from 'next/navigation';
-import { AllNotificationsProps } from '../../Pages/Notifications/Notifications.Interface';
-import { WIconButton } from '../../Button/WButton.Icon';
-import { IconButtonTransitionProp } from '../../Button/Button.Interface';
+import { useAuth } from '@/app/context/userProvider/useAuth';
+import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
+import { AllNotificationsProps } from '../../Notifications/Notifications.Interface';
+import { IconButtonTransitionProp } from '../../Icon-button/Button.Interface';
+import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
+import { WIconButton } from '../../Icon-button/WButton.Icon';
+import { NotificationsIcons } from '../../Notifications/Notifications.Icons';
 
 interface NotificationsProps {
   mobile: boolean;
@@ -39,63 +37,10 @@ export function Notifications({ mobile }: NotificationsProps) {
     []
   );
 
-  const { data: AnnouncementsData } = fetchPageNotification('avisos', {
-    page: 1,
-  });
-  const { data: NotificationsData } = fetchPageNotification(
-    '/notificacoes/findAllUnreadNotification',
-    {
-      page: 1,
-    }
-  );
-
   const handlePush = (values: any) => {
     router.push(`/notifications?id=${values.id}`);
     setOpenMenu(null);
   };
-
-  useEffect(() => {
-    const notificationsArray: any = [];
-    if (AnnouncementsData) {
-      AnnouncementsData.list
-        .filter((not: any) => new Date(not.validade) >= new Date())
-        .map((not: any) => {
-          const option = {
-            message: not.texto,
-            createdAt: new Date(not.createdAt),
-            title: not.assunto,
-            id: not.id,
-            expireDate: not.validade,
-            urgent: not.urgente,
-            type: 'announcement',
-          };
-          notificationsArray.push(option);
-          return option;
-        });
-    }
-
-    if (NotificationsData) {
-      NotificationsData.list.map((not: any) => {
-        const option = {
-          message: not.textoNotificacao,
-          createdAt: new Date(not.createdAt),
-          title: not.titulo,
-          id: not.id,
-          type: 'notifications',
-          read: not.lido,
-          author: not.usuario?.name,
-        };
-        notificationsArray.push(option);
-        return option;
-      });
-    }
-    notificationsArray
-      .sort((a: any, b: any) => {
-        return a.createdAt?.getTime() - b.createdAt?.getTime();
-      })
-      .reverse();
-    setNotifications(notificationsArray);
-  }, [AnnouncementsData, NotificationsData]);
 
   const isOpen = Boolean(openMenu);
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {

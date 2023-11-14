@@ -23,14 +23,16 @@ import {
   CircleRounded,
 } from '@mui/icons-material';
 import { usePathname } from 'next/navigation';
-import { darkTheme, lightTheme } from '../../../ThemeRegistry/theme';
+
 import Link from 'next/link';
 
 import { MenuSubItemSidebar } from '../MenuSubItemSiderbar/MenuSubItemSidebar';
-import { useAppThemeContext } from '@/app/context/theme/useAppTheme';
+
 import { useToggleDrawer } from '@/app/context/toggleDrawer/useToggleDrawer';
 import { useToggleDrawerMobile } from '@/app/context/toggleDrawerMobile/useToggleDrawerMobile';
 import { MenuItemProps } from './MenuItemSidebar.Interface';
+import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
+import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
 
 const icons = [
   HomeRounded,

@@ -7,11 +7,11 @@ import { FullScreen } from './fullScreen';
 import { Notifications } from './notifications';
 import { Settings } from './settings';
 import { AppBarAvatar } from './avatarHeader';
-import { darkTheme, lightTheme } from '../../ThemeRegistry/theme';
+import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
+import { useAuth } from '@/app/context/userProvider/useAuth';
+import { WIconButton } from '../../Icon-button/WButton.Icon';
+import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
 
-import { useAppThemeContext } from '@/app/context/theme/useAppTheme';
-import { useAuth } from '@/app/context/useAuth';
-import { WIconButton } from '../../Button/WButton.Icon';
 
 interface BoxButtonsProps {
   toggleFullScreen: () => void;

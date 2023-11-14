@@ -11,13 +11,18 @@ import {
 
 import { AccountCircle, Logout, ManageAccounts } from '@mui/icons-material';
 import Link from 'next/link';
-import { useAuth } from '@/app/context/useAuth';
-import { darkTheme, lightTheme } from '../../ThemeRegistry/theme';
-import { useAppThemeContext } from '@/app/context/theme/useAppTheme';
+
+
+
 import { useInfoUser } from '@/app/context/userProvider/useInfoUser';
 import { WStyledBadge } from './Sidebar/StyleBadge';
+import { useAuth } from '@/app/context/userProvider/useAuth';
+import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
+import { IconButtonTransitionProp } from '../../Icon-button/Button.Interface';
 import { WAvatar } from '../../Avatar/WAvatar';
-import { IconButtonTransitionProp } from '../../Button/Button.Interface';
+import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
+
+
 
 export function AppBarAvatar() {
   const user = useInfoUser();
