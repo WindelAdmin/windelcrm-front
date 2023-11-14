@@ -11,7 +11,7 @@ import { Box, Grid, Paper, Stack } from '@mui/material';
 import { WButton } from '@/app/components/Button/WButton';
 import { useAuth } from '@/app/context/userProvider/useAuth';
 import { useWForm } from '@/app/hooks/useWForm';
-import { signInSchema } from './components/Schema/Auth.schema';
+
 import { setErrors } from '@/utils/hooks/YupErrors';
 import { lightTheme } from '@/app/context/Theme/themes';
 import { WAlert } from '@/app/components/Alert/Alert';
@@ -29,6 +29,7 @@ import { AuthCookie } from './components/Auth.Cookie';
 import { useSnackBar } from '@/app/context/toastProvider/useToast';
 import { api } from '@/services/ApiService/axios.service';
 import { encrypt } from '@/services/CryptoService/crypto.service';
+import { signInSchema } from './Schema/Auth.schema';
 
 export interface SignInProps {
   email: string

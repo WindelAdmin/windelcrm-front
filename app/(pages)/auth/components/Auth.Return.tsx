@@ -1,10 +1,8 @@
+import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
 import { Box } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
-
 import { useRouter } from 'next/navigation';
-import { useAppThemeContext } from '@/app/context/Theme/useAppTheme';
 import { WButton } from '@/app/components/Button/WButton';
-
 
 export function AuthReturn() {
   const { themeName } = useAppThemeContext();
@@ -21,10 +19,10 @@ export function AuthReturn() {
     >
       <WButton
         color={isLightTheme ? 'info' : 'deepGrey'}
-        variant='text'
-        textButton='voltar'
+        variant="text"
+        textButton="voltar"
         startIcon={<ArrowBack />}
-        size='small'
+        size="small"
         onClick={() => {
           router.push('/');
         }}

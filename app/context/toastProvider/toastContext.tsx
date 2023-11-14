@@ -1,8 +1,9 @@
 import React, { createContext, useState } from 'react';
 import { Alert, AlertTitle, Grow, Snackbar, Typography } from '@mui/material';
 import { SnackBarContextActions } from './toast.interface';
-import { useAppThemeContext } from '../Theme/useAppTheme';
+
 import { darkTheme, lightTheme } from '../Theme/themes';
+import { useAppThemeContext } from '../Theme/useAppThemeContext';
 
 
 export const SnackBarContext = createContext({} as SnackBarContextActions);

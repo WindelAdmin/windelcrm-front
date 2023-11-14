@@ -3,7 +3,10 @@ import React from 'react';
 import { Typography, Link } from '@mui/material';
 
 import CookieConsent from 'react-cookie-consent';
-import { cookieConsentment, cookieConsentmentPolicy } from '../utils/Auth.Message';
+import {
+  cookieConsentment,
+  cookieConsentmentPolicy,
+} from '@/utils/Auth.Message';
 
 export function AuthCookie() {
   return (

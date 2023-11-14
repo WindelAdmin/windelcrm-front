@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-
 import { Stack } from '@mui/material';
 import { TypographyLogin } from '@/app/components/Typography/Typography.Auth/Typography.Link';
 

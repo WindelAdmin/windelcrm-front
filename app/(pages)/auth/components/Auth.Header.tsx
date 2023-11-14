@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
-import { useAppThemeContext } from '@/app/context/Theme/useAppTheme';
 
 export function AuthHeader() {
   return (
