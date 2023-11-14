@@ -1,8 +1,10 @@
 'use client';
 import { createContext, useEffect, useState } from 'react';
-import { UserProviderContextProps, UserProviderProps } from './interface';
+
 import { parseCookies } from 'nookies';
-import { DecryptWithAES } from '@/app/utils/Functions/Crypto';
+import { decrypt } from '@/services/CryptoService/crypto.service';
+import { UserProviderContextProps, UserProviderProps } from './interface';
+
 
 export const UserContext = createContext({});
 
@@ -12,8 +14,13 @@ export function UserProvider({ children }: UserProviderContextProps) {
   useEffect(() => {
     const { 'nextauth.user': userCookies } = parseCookies();
     if (userCookies) {
-      const decrypt = DecryptWithAES(userCookies);
-      setInfoUser(JSON.parse(decrypt));
+      async () => {
+        const decrypted = await decrypt(userCookies)
+        console.log("decript",decrypted);
+        
+        setInfoUser(JSON.parse(decrypted));
+      }
+      
     }
   }, []);
 

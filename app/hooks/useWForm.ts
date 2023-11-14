@@ -2,7 +2,8 @@ import { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
 
 import { AxiosError } from 'axios';
-import { api } from '@/services/ApiService/api.service';
+import { api } from '@/services/ApiService/axios.service';
+
 
 export const useWForm = () => {
   const formRef = useRef<FormHandles>(null);

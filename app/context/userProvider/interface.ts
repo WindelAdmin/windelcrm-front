@@ -1,5 +1,47 @@
-import { ReactNode } from 'react';
+import { ReactNode } from 'react'
 
+export interface UserProviderProps {
+  administrador: boolean
+  cpfCnpj: string
+  dataValidadeVersaoTeste: null
+  email: string
+  empresaId: number
+  liberaCadastros: boolean
+  liberaCompras: boolean
+  liberaDashBoardCurvaAbcProd: boolean
+  liberaDashBoardFatSemestral: boolean
+  liberaDashBoardFinanceiro: boolean
+  liberaDashBoardFluxoDiario: boolean
+  liberaDashBoardFluxoMensal: boolean
+  liberaDashBoardMaiorDespesa: boolean
+  liberaDashBoardPagSemestral: boolean
+  liberaDashBoardTopReceitas: boolean
+  liberaDashboard: boolean
+  liberaFinanceiro: boolean
+  liberaIndGerais: boolean
+  liberaIndProdutos: boolean
+  liberaRelatorios: boolean
+  liberaVendas: boolean
+  name: string
+  permissionCreate: boolean
+  permissionDelete: boolean
+  permissionUpdate: boolean
+  tomadorDeDecisao: boolean
+  usuarioId: number
+  usuarioMaster: boolean
+  usuarioPrincipal: boolean
+  usuariosConectados: number
+  usuariosSimultaneos: number
+  versaoTeste: boolean
+}
+
+export interface UserProviderContextProps {
+  children: ReactNode
+}
+
+export interface InfoUserProps {
+  infoUser?: UserProviderProps
+}
 export interface UserProps {
   email?: string;
   token?: string;

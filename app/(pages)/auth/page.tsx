@@ -27,8 +27,8 @@ import { TypographyLogin } from '@/app/components/Typography/Typography.Auth/Typ
 import { AuthCopyright } from './components/Auth.Copyright';
 import { AuthCookie } from './components/Auth.Cookie';
 import { useSnackBar } from '@/app/context/toastProvider/useToast';
-import { getAxiosClient } from '@/services/ApiService/axios.service';
-import { api } from '@/services/ApiService/api.service';
+import { api } from '@/services/ApiService/axios.service';
+import { encrypt } from '@/services/CryptoService/crypto.service';
 
 export interface SignInProps {
   email: string
@@ -45,18 +45,12 @@ export default function AuthPage() {
 
   const handleSignIn: SubmitHandler<SignInProps> = (values) => {
     
-    
     signInSchema
       .validate(values, { abortEarly: false })
       .then(async () => {
-          const response = await api.get('/login');
-          console.log("response",response.data);
-        // await auth.authenticate(
-        //   values.email,
-        //   values.password,
-        //   setBackdrop,
-        //   backdrop
-        // );
+        const {email, password} = {email:await encrypt(values.email), password:await encrypt(values.password)}
+        auth.authenticate(email, password, setBackdrop, backdrop)
+
       })
       .catch((errors: yup.ValidationError) => {
         setErrors({ formRef, errors });

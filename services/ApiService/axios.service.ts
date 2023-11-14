@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import { parseCookies } from 'nookies';
 
-export function getAxiosClient(ctx?: any) {
+export function getAxiosClient(ctx?: any):AxiosInstance {
   const cookies = parseCookies(ctx);
   const token = cookies['nextauth.token'];
   const api = axios.create({
@@ -12,3 +12,5 @@ export function getAxiosClient(ctx?: any) {
   });
   return api;
 }
+export const api = getAxiosClient();
+

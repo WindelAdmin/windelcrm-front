@@ -5,9 +5,12 @@ import { LoginRequest } from './loginRequest';
 import nookies, { parseCookies, setCookie } from 'nookies';
 import { usePathname, useRouter } from 'next/navigation';
 
+
+import { decrypt, encrypt } from '@/services/CryptoService/crypto.service';
+import { api } from '@/services/ApiService/axios.service';
 import { AuthProviderProps, ContextProps, UserProps } from './interface';
-import { api } from '@/services/ApiService/api.service';
-import { decrypt, encrypt } from '@/utils/Crypto';
+
+
 
 
 export const AuthContext = createContext<ContextProps>({} as ContextProps);
@@ -27,10 +30,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const { 'nextauth.token': token, 'nextauth.user': userCookies } =
       parseCookies();
     if (token && userCookies) {
-      setUser(JSON.parse(decrypt(userCookies)));
-      //if (pathname === '/') router.push('/dashboard/');
+      if (pathname === '/') router.push('/dashboard/');
     }
   }, []);
+
+  const getUserCookies = () => {
+    const { 'nextauth.token': token, 'nextauth.user': userCookies } =
+      parseCookies();
+
+      const userCookie = decrypt(userCookies)
+      return userCookie
+  }
 
   async function authenticate(
     email: string,
@@ -38,6 +48,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setBackdrop: any,
     backdrop: boolean
   ) {
+
     const response = await LoginRequest(email, password);
 
     if (response.success) {
@@ -63,12 +74,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     } else {
       setBackdrop(false);
       const err = response.error as any;
-      if (err.response?.status === 400) {
-        if (err.response?.data.message?.status === 'expired_test') {
-          setExpiredTest(true);
-          setEnterpriseInfo(err.response?.data?.message?.dadosEmpresa);
-        }
-      } else if (err.response?.data?.message === 'Usuario não existe') {
+    if (err.response?.data?.message === 'Usuario não existe') {
         setUserNotFound(true);
       } else if (err.message.indexOf('Network err') !== -1) {
         setHasAuthError(true);
@@ -82,10 +88,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   async function logout() {
     const { 'nextauth.user': userCookie } = parseCookies();
+    
     if (userCookie) {
       const user = JSON.parse(decrypt(userCookie));
-      await api.patch(`usuario/${user.usuarioId}`, {
-        conectado: false,
+      await api.patch(`user/${user.usuarioId}`, {
+        isLogged: false,
       });
     }
     nookies.destroy(null, 'nextauth.token', {
