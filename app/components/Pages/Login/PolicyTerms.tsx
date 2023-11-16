@@ -1,6 +1,6 @@
 'use client';
 
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
 import { Box, Grid, Paper, Stack } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { AuthContainer } from './Auth.Container';

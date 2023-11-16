@@ -25,7 +25,7 @@ declare module '@mui/material/TextField' {
   }
 }
 
-export const lightTheme = createTheme({
+export const LightTheme = createTheme({
   palette: {
     primary: {
       main: deepPurple[700],

@@ -1,10 +1,10 @@
-import React, { ReactNode } from 'react';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
 import MuiDrawer from '@mui/material/Drawer';
 import { styled } from '@mui/material/styles';
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
+import { ReactNode } from 'react';
 
-import { lightTheme,darkTheme } from '@/app/context/Theme/themes';
-import { useToggleDrawer } from '@/app/context/toggleDrawer/useToggleDrawer';
+import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+import { useToggleDrawer } from '@/app/context/ToggleDrawer/useToggleDrawer';
 
 
 interface DrawerSidebarProps {

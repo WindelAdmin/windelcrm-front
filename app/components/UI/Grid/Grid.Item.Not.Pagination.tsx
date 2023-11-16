@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react';
-import { GridProps, Grid, Box } from '@mui/material';
+import { Box, Grid, GridProps } from '@mui/material';
+import { ReactNode } from 'react';
 
 
 
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { useAppThemeContext } from '@/app/context/Theme/useAppTheme';
-import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
+import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { WPaper } from '../Paper/Paper';
 
 

@@ -1,6 +1,6 @@
 'use client';
-import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
+import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
 import { Close, Settings as SettingsIcon } from '@mui/icons-material';
 import { IconButton, Typography } from '@mui/material';
 import React from 'react';

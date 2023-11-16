@@ -1,9 +1,9 @@
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
-import React, { useState } from 'react';
-import { MenuMainProps } from '../../Sidebar/Sidebar.Interface';
+import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
 import { List, Paper } from '@mui/material';
-import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
+import { useState } from 'react';
 import { MenuItemSidebar } from '../../Sidebar/MenuItemSidebar/MenuItemSidebar';
+import { MenuMainProps } from '../../Sidebar/Sidebar.Interface';
 
 export function HeaderSidebarMobile() {
   const { themeName } = useAppThemeContext();

@@ -1,11 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from 'react';
-import { styled } from '@mui/material/styles';
+import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+import { useToggleDrawer } from '@/app/context/ToggleDrawer/useToggleDrawer';
+import { FirstPageRounded, LastPageRounded } from '@mui/icons-material';
 import IconButtonMui from '@mui/material/IconButton';
-import { LastPageRounded, FirstPageRounded } from '@mui/icons-material';
-import { useToggleDrawer } from '@/app/context/toggleDrawer/useToggleDrawer';
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
-import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
+import { styled } from '@mui/material/styles';
 
 export function ToggleDrawerOpen() {
   const { open, toggleDrawer } = useToggleDrawer();

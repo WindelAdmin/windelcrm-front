@@ -1,16 +1,15 @@
-import React from 'react';
+import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+import { Visibility } from '@mui/icons-material';
 import {
-  Box,
-  Typography,
-  FormControlLabel,
-  FormGroup,
-  Stack,
-  Switch,
+    Box,
+    FormControlLabel,
+    FormGroup,
+    Stack,
+    Switch,
+    Typography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Visibility } from '@mui/icons-material';
-import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
 
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({

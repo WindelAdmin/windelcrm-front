@@ -1,8 +1,8 @@
 import { Box, Dialog, DialogContent } from '@mui/material';
 import { TypographyTitle } from '../Typography/Typography.Title/WTypography.Title';
 
-import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
+import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
 import { WModalProps } from "./Modal.interface";
 ''
 export function WModal({

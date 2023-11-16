@@ -1,7 +1,7 @@
-import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
-import { useAvatarContext } from '@/app/context/avatarProvider/useAvatarProvider';
-import { useInfoUser } from '@/app/context/userProvider/useInfoUser';
+import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+import { useInfoUser } from '@/app/context/UserProvider/useInfoUser';
+import { useAvatarContext } from '@/app/context/avatarProvide/useAvatarProvider';
 import CameraIcon from '@mui/icons-material/PhotoCamera';
 import { Box } from '@mui/material';
 import Avatar from '@mui/material/Avatar';

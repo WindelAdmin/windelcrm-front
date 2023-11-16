@@ -23,7 +23,6 @@ export interface UserProps {
   hasAuthError: boolean;
   userUnauthorized: boolean;
   enterpriseInfo: string;
-  regPerPage: number;
 }
 
 export interface ContextProps extends UserProps {

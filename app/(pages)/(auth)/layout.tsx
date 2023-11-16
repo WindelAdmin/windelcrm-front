@@ -1,7 +1,7 @@
 'use client';
 import { LayoutSidebarAppBar } from '@/app/components/UI/Layout';
-import ThemeRegistry from '@/app/context/Theme/ThemeRegistry';
-import { AvatarProvider } from '@/app/context/avatarProvider';
+import ThemeRegistry from '@/app/context/ThemeContext/ThemeRegistry';
+import { AvatarProvider } from '@/app/context/avatarProvide';
 import React from 'react';
 
 

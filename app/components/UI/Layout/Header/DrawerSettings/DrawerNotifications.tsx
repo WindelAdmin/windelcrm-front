@@ -1,16 +1,14 @@
-import React from 'react';
-import {
-  Box,
-  Typography,
-  colors,
-  FormControlLabel,
-  FormGroup,
-  Stack,
-  Switch,
-} from '@mui/material';
+import { darkTheme } from '@/app/context/ThemeContext/themes';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
 import { Notifications } from '@mui/icons-material';
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
-import { darkTheme } from '@/app/context/Theme/themes';
+import {
+    Box,
+    FormControlLabel,
+    FormGroup,
+    Stack,
+    Switch,
+    Typography
+} from '@mui/material';
 
 
 export function DrawerNotifications() {

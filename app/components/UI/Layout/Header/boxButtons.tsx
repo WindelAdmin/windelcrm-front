@@ -1,6 +1,6 @@
-import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
-import { useAuth } from '@/app/context/userProvider/useAuth';
+import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+import { useAuth } from '@/app/context/UserProvider/useAuth';
 import { PowerSettingsNewRounded } from '@mui/icons-material';
 import { Box } from '@mui/material';
 import { WIconButton } from '../../IconButton/WButton.Icon';

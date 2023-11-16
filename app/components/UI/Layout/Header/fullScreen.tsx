@@ -1,5 +1,5 @@
-import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
+import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
 import { ZoomInMapRounded, ZoomOutMapRounded } from '@mui/icons-material';
 import { IconButtonProps } from '@mui/material';
 import { IconButtonTransitionProp } from '../../IconButton/Button.Interface';

@@ -49,7 +49,7 @@ const quicksand = Quicksand({
   subsets: ['latin'],
   display: 'swap',
 });
-export const darkTheme = createTheme({
+export const DarkTheme = createTheme({
   palette: {
     primary: {
       main: deepPurple[600],

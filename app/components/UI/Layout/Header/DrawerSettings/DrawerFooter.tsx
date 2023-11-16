@@ -1,8 +1,7 @@
-import React from 'react'
+import { lightTheme } from '@/app/context/ThemeContext/themes'
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext'
 import { DashboardCustomize } from '@mui/icons-material'
-import { Box, colors, Typography, Button } from '@mui/material'
-import { lightTheme } from '@/app/context/Theme/themes'
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext'
+import { Box, Button, Typography, colors } from '@mui/material'
 
 
 export function DrawerFooter() {

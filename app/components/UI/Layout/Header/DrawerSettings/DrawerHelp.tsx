@@ -1,10 +1,9 @@
 import { Help } from '@mui/icons-material'
-import { Stack, Box, Typography, colors } from '@mui/material'
-import React from 'react'
+import { Box, Stack, Typography } from '@mui/material'
 
+import { darkTheme } from '@/app/context/ThemeContext/themes'
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext'
 import Link from 'next/link'
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext'
-import { darkTheme } from '@/app/context/Theme/themes'
 
 export function DrawerHelp() {
   const { themeName, toggleTheme } = useAppThemeContext()

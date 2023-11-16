@@ -1,10 +1,10 @@
-import React, { ReactNode } from 'react';
+import { darkTheme } from '@/app/context/ThemeContext/darkTheme';
+import { lightTheme } from '@/app/context/ThemeContext/lightTheme';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
 import { Toolbar } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
-import { lightTheme } from '@/app/context/Theme/lightTheme';
-import { darkTheme } from '@/app/context/Theme/darkTheme';
+import { styled } from '@mui/material/styles';
+import { ReactNode } from 'react';
 
 
 interface AppBarDesktopProps {

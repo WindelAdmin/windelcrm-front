@@ -1,11 +1,11 @@
 'use client';
 import CssBaseline from '@mui/material/CssBaseline';
 import * as React from 'react';
-import { SnackBarProvider } from '../toastProvider/toastContext';
-import { AuthProvider } from '../userProvider';
-import { UserProvider } from '../userProvider/userContext';
+import { SnackBarProvider } from '../ToastProvider/toastContext';
+import { AuthProvider } from '../UserContext/Auth.context';
+import { UserProvider } from '../UserContext/User.context';
 import NextAppDirEmotionCacheProvider from './EmotionCache';
-import { AppThemeProvider } from './themeContext';
+import { AppThemeProvider } from './ThemeContext';
 
 export default function ThemeRegistry({
   children,

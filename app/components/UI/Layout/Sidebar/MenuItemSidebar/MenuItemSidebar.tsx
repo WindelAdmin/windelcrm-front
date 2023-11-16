@@ -1,38 +1,38 @@
-import React, { useEffect, useState } from 'react';
 import {
-  Box,
-  Collapse,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Typography,
-  colors,
+    Box,
+    Collapse,
+    List,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    Typography,
+    colors,
 } from '@mui/material';
+import { useEffect, useState } from 'react';
 
-import { MenuMainProps } from '../Sidebar.Interface';
 import {
-  HomeRounded,
-  MonetizationOnRounded,
-  ShoppingCartRounded,
-  PointOfSaleRounded,
-  AssessmentRounded,
-  ExpandLess,
-  ExpandMore,
-  CreateNewFolder,
-  CircleRounded,
+    AssessmentRounded,
+    CircleRounded,
+    CreateNewFolder,
+    ExpandLess,
+    ExpandMore,
+    HomeRounded,
+    MonetizationOnRounded,
+    PointOfSaleRounded,
+    ShoppingCartRounded,
 } from '@mui/icons-material';
 import { usePathname } from 'next/navigation';
+import { MenuMainProps } from '../Sidebar.Interface';
 
 import Link from 'next/link';
 
 import { MenuSubItemSidebar } from '../MenuSubItemSiderbar/MenuSubItemSidebar';
 
-import { useToggleDrawer } from '@/app/context/toggleDrawer/useToggleDrawer';
-import { useToggleDrawerMobile } from '@/app/context/toggleDrawerMobile/useToggleDrawerMobile';
+import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+import { useToggleDrawer } from '@/app/context/ToggleDrawer/useToggleDrawer';
+import { useToggleDrawerMobile } from '@/app/context/ToggleDrawerMobile/useToggleDrawerMobile';
 import { MenuItemProps } from './MenuItemSidebar.Interface';
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
-import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
 
 const icons = [
   HomeRounded,

@@ -1,4 +1,4 @@
-import ThemeRegistry from '@/app/context/Theme/ThemeRegistry'
+import ThemeRegistry from '@/app/context/ThemeContext/ThemeRegistry'
 
 export const metadata = {
   title: 'Next.js',

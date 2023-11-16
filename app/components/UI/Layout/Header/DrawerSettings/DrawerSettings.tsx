@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react';
+import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
 import Drawer from '@mui/material/Drawer';
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
-import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
+import React, { ReactNode } from 'react';
 
 
 interface DrawerSettingsProps {

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { List, Paper, colors } from '@mui/material';
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
-import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
+import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+import { List, Paper } from '@mui/material';
+import { useState } from 'react';
 
 
 export function SidebarMenu() {

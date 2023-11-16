@@ -1,24 +1,25 @@
 'use client';
-import React, { useState } from 'react';
 import { Box, Paper, Toolbar } from '@mui/material';
+import { useState } from 'react';
 
+import { useToggleDrawer } from '@/app/context/ToggleDrawer/useToggleDrawer';
 import { BoxButtons } from './Header/boxButtons';
 import { ToggleDrawerOpen } from './Header/toggleDrawerOpen';
 import { SidebarMenu } from './Sidebar/MenuSidebar';
-import { useToggleDrawer } from '@/app/context/toggleDrawer/useToggleDrawer';
 
-import { ToggleDrawerMobile } from './Header/ToggleDrawerMobile';
+import { useInfoEmpresa } from '@/app/context/CompanyContext/useInfoEmpresa';
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+import { TypographyTitle } from '../Typography/Typography.Title/WTypography.Title';
 import { AppBarDesktop } from './AppBar/Appbar.Desktop';
 import { AppBarMobile } from './AppBar/Appbar.Mobile';
 import { DrawerDesktop } from './Drawer/Drawer.Desktop';
 import { DrawerMobile } from './Drawer/Drawer.Mobile';
 import { HeaderSidebar } from './Header/Sidebar/Sidebar.Header.Desktop';
 import { HeaderSidebarMobile } from './Header/Sidebar/Sidebar.Header.Mobile';
+import { ToggleDrawerMobile } from './Header/ToggleDrawerMobile';
 import { LayoutSidebarAppBarProps } from './Layout.Interface';
-import { TypographyTitle } from '../Typography/Typography.Title/WTypography.Title';
-import { useInfoEmpresa } from '@/app/context/empresaProvider/useInfoEmpresa';
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
-import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
 
 
 export function LayoutSidebarAppBar({ children }: LayoutSidebarAppBarProps) {
@@ -57,8 +58,8 @@ export function LayoutSidebarAppBar({ children }: LayoutSidebarAppBarProps) {
             text={empresa?.nome}
             color={
               themeName === 'light'
-                ? lightTheme.palette.common.black
-                : darkTheme.palette.common.white
+                ? LightTheme.palette.common.black
+                : DarkTheme.palette.common.white
             }
           />
           <BoxButtons
@@ -94,8 +95,8 @@ export function LayoutSidebarAppBar({ children }: LayoutSidebarAppBarProps) {
         sx={{
           backgroundColor:
             themeName === 'light'
-              ? lightTheme.palette.background.default
-              : darkTheme.palette.background.default,
+              ? LightTheme.palette.background.default
+              : DarkTheme.palette.background.default,
           width: '100%',
           height: '100vh',
         }}
@@ -106,8 +107,8 @@ export function LayoutSidebarAppBar({ children }: LayoutSidebarAppBarProps) {
           sx={{
             backgroundColor:
               themeName === 'light'
-                ? lightTheme.palette.background.default
-                : darkTheme.palette.background.default,
+                ? LightTheme.palette.background.default
+                : DarkTheme.palette.background.default,
 
             width: '100%',
             height: '100%',

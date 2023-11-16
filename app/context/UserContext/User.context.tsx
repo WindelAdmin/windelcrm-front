@@ -1,10 +1,9 @@
 'use client';
-import { createContext, useEffect, useState } from 'react';
 
-import { parseCookies } from 'nookies';
 import { decrypt } from '@/services/CryptoService/crypto.service';
+import { parseCookies } from 'nookies';
+import { createContext, useEffect, useState } from 'react';
 import { UserProviderContextProps, UserProviderProps } from './interface';
-
 
 export const UserContext = createContext({});
 

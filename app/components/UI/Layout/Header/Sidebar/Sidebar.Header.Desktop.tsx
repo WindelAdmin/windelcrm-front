@@ -1,8 +1,7 @@
-import React from 'react';
+import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
 import { Box, Toolbar } from '@mui/material';
 import Image from 'next/image';
-import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
 
 
 export function HeaderSidebar() {

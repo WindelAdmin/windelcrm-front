@@ -9,8 +9,9 @@ import {
   useMemo,
   useState,
 } from 'react';
+import { DarkTheme } from './Themes/DarkTheme';
+import { LightTheme } from './Themes/LightTheme';
 import { ThemeProps, ThemeProviderProps } from './interface';
-import { darkTheme, lightTheme } from './themes';
 
 export const ThemeContext = createContext({} as ThemeProps);
 
@@ -35,8 +36,8 @@ export function AppThemeProvider({ children }: ThemeProviderProps) {
   }, [themeName]);
 
   const theme = useMemo(() => {
-    if (themeName === 'light') return lightTheme;
-    return darkTheme;
+    if (themeName === 'light') return LightTheme;
+    return DarkTheme;
   }, [themeName]);
 
   return (

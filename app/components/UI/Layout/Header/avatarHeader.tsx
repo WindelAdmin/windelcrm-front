@@ -1,10 +1,10 @@
 import {
-  Box,
-  Divider,
-  ListItemIcon,
-  Menu,
-  MenuItem,
-  Typography
+    Box,
+    Divider,
+    ListItemIcon,
+    Menu,
+    MenuItem,
+    Typography
 } from '@mui/material';
 import { MouseEvent, useState } from 'react';
 
@@ -13,10 +13,10 @@ import Link from 'next/link';
 
 
 
-import { darkTheme, lightTheme } from '@/app/context/Theme/themes';
-import { useAppThemeContext } from '@/app/context/Theme/useAppThemeContext';
-import { useAuth } from '@/app/context/userProvider/useAuth';
-import { useInfoUser } from '@/app/context/userProvider/useInfoUser';
+import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+import { useAuth } from '@/app/context/UserProvider/useAuth';
+import { useInfoUser } from '@/app/context/UserProvider/useInfoUser';
 import { WAvatar } from '../../Avatar/WAvatar';
 import { IconButtonTransitionProp } from '../../IconButton/Button.Interface';
 import { WStyledBadge } from './Sidebar/StyleBadge';

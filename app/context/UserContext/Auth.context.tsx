@@ -16,9 +16,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [userNotFound, setUserNotFound] = useState(false);
   const [hasAuthError, setHasAuthError] = useState(false);
   const [userUnauthorized, setUserUnauthorized] = useState(false);
-  const [userMaxNumber, setUserMaxNumber] = useState(false);
   const [enterpriseInfo, setEnterpriseInfo] = useState('');
-  const [regPerPage, setRegPerPage] = useState(25);
 
   useEffect(() => {
     const { 'nextauth.token': token, 'nextauth.user': userCookies } =
@@ -124,7 +122,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         hasAuthError,
         userUnauthorized,
         enterpriseInfo,
-        regPerPage,
         closeUserNotFoundModal,
         closeHasAuthErrorModal,
         closeUserUnauthorizedModal,

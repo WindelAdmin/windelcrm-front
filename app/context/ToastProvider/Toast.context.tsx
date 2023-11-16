@@ -1,9 +1,10 @@
-import React, { createContext, useState } from 'react';
 import { Alert, AlertTitle, Grow, Snackbar, Typography } from '@mui/material';
-import { SnackBarContextActions } from './toast.interface';
+import React, { createContext, useState } from 'react';
+import { SnackBarContextActions } from './Toast.interface';
 
-import { darkTheme, lightTheme } from '../Theme/themes';
-import { useAppThemeContext } from '../Theme/useAppThemeContext';
+import { DarkTheme } from '../ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '../ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '../ThemeContext/UseAppTheme.context';
 
 
 export const SnackBarContext = createContext({} as SnackBarContextActions);
@@ -53,52 +54,52 @@ export function SnackBarProvider({ children }: { children: React.ReactNode }) {
             bgcolor:
               severity === 'success'
                 ? themeName === 'light'
-                  ? lightTheme.palette.common.white
-                  : darkTheme.palette.success.light
+                  ? LightTheme.palette.common.white
+                  : DarkTheme.palette.success.light
                 : severity === 'error'
                 ? themeName === 'light'
-                  ? lightTheme.palette.common.white
-                  : darkTheme.palette.error.main
+                  ? LightTheme.palette.common.white
+                  : DarkTheme.palette.error.main
                 : severity === 'warning'
                 ? themeName === 'light'
-                  ? lightTheme.palette.common.white
-                  : darkTheme.palette.warning.light
+                  ? LightTheme.palette.common.white
+                  : DarkTheme.palette.warning.light
                 : themeName === 'light'
-                ? lightTheme.palette.common.white
-                : darkTheme.palette.info.light,
+                ? LightTheme.palette.common.white
+                : DarkTheme.palette.info.light,
             color:
               severity === 'success'
                 ? themeName === 'light'
-                  ? darkTheme.palette.success.light
-                  : lightTheme.palette.common.white
+                  ? DarkTheme.palette.success.light
+                  : LightTheme.palette.common.white
                 : severity === 'error'
                 ? themeName === 'light'
-                  ? lightTheme.palette.error.light
-                  : darkTheme.palette.common.white
+                  ? LightTheme.palette.error.light
+                  : DarkTheme.palette.common.white
                 : severity === 'warning'
                 ? themeName === 'light'
-                  ? lightTheme.palette.warning.light
-                  : darkTheme.palette.common.white
+                  ? LightTheme.palette.warning.light
+                  : DarkTheme.palette.common.white
                 : themeName === 'light'
-                ? darkTheme.palette.info.light
-                : lightTheme.palette.common.white,
+                ? DarkTheme.palette.info.light
+                : LightTheme.palette.common.white,
             border: '1px solid',
             borderColor:
               severity === 'success'
                 ? themeName === 'light'
-                  ? darkTheme.palette.success.light
-                  : darkTheme.palette.success.light
+                  ? DarkTheme.palette.success.light
+                  : DarkTheme.palette.success.light
                 : severity === 'error'
                 ? themeName === 'light'
-                  ? lightTheme.palette.error.light
-                  : lightTheme.palette.error.light
+                  ? LightTheme.palette.error.light
+                  : LightTheme.palette.error.light
                 : severity === 'warning'
                 ? themeName === 'light'
-                  ? lightTheme.palette.warning.light
-                  : lightTheme.palette.warning.light
+                  ? LightTheme.palette.warning.light
+                  : LightTheme.palette.warning.light
                 : themeName === 'light'
-                ? darkTheme.palette.info.light
-                : darkTheme.palette.info.light,
+                ? DarkTheme.palette.info.light
+                : DarkTheme.palette.info.light,
           }}
         >
           <AlertTitle

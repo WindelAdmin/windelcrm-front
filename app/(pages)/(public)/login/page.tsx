@@ -7,7 +7,7 @@ import { useState } from 'react';
 import * as yup from 'yup';
 
 
-import { useAuth } from '@/app/context/userProvider/useAuth';
+import { useAuth } from '@/app/context/UserProvider/useAuth';
 import { useWForm } from '@/app/hooks/WForm/useWForm';
 
 import { AuthContainer } from '@/app/components/Pages/Login/Auth.Container';
@@ -21,7 +21,7 @@ import { WButton } from '@/app/components/UI/Button/WButton';
 import { WButtonLoading } from '@/app/components/UI/Button/WButton.Loading';
 import { WInput } from '@/app/components/UI/Inputs/WInput';
 import { WInputPassword } from '@/app/components/UI/Inputs/WInputPassword';
-import { lightTheme } from '@/app/context/Theme/themes';
+import { lightTheme } from '@/app/context/ThemeContext/themes';
 import { useEnableButton } from '@/app/hooks/EnableButton/useEnableButton';
 import { setErrors } from '@/app/hooks/YupErrors';
 import { signInSchema } from '../../../components/Pages/Login/schemas/Auth.schema';
