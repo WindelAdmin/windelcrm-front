@@ -1,5 +1,5 @@
 'use client'
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useState } from 'react'
 import { AvatarProviderProps } from './interface'
 
 import { useInfoUser } from '../userProvider/useInfoUser'
@@ -16,10 +16,6 @@ export const AvatarContext = createContext({
 
 export function AvatarProvider({ children }: AvatarProviderProps) {
   const user = useInfoUser()
-  const searchData = {
-    page: 1,
-    situation: 'Ativo'
-  }
   const [picture, setPicture] = useState('')
 
 

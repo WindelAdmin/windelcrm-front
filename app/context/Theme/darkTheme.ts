@@ -1,15 +1,14 @@
-import { Quicksand } from 'next/font/google';
-import { createTheme } from '@mui/material/styles';
 import {
   blueGrey,
   common,
+  deepPurple,
   grey,
   lightBlue,
   orange,
-  deepPurple,
-  red,
-  pink,
+  red
 } from '@mui/material/colors';
+import { createTheme } from '@mui/material/styles';
+import { Quicksand } from 'next/font/google';
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -20,6 +19,7 @@ declare module '@mui/material/styles' {
     deepGrey?: PaletteOptions['primary'];
   }
 }
+
 // Update the Button's color options to include an deepGrey option
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
@@ -49,7 +49,6 @@ const quicksand = Quicksand({
   subsets: ['latin'],
   display: 'swap',
 });
-
 export const darkTheme = createTheme({
   palette: {
     primary: {
@@ -106,9 +105,7 @@ export const darkTheme = createTheme({
   typography: {
     fontFamily: quicksand.style.fontFamily,
   },
-  shape: {
-    borderRadius: 10,
-  },
+
   components: {
     MuiAlert: {
       styleOverrides: {
@@ -127,15 +124,6 @@ export const darkTheme = createTheme({
             color: grey[200],
           },
           '&.Mui-error': {
-            color: grey[200],
-          },
-        },
-      },
-    },
-    MuiSvgIcon: {
-      styleOverrides: {
-        root: {
-          '&.MuiSelect-icon': {
             color: grey[200],
           },
         },
@@ -203,20 +191,6 @@ export const darkTheme = createTheme({
         },
         popupIndicator: {
           color: grey[200],
-        },
-        listbox: {
-          '&::-webkit-scrollbar': {
-            width: '5px',
-            height: '5px',
-          },
-          '&::-webkit-scrollbar-track': {
-            boxShadow: 'inset 0 0 3px rgba(0,0,0,0.00)',
-            webkitBoxShadow: 'inset 0 0 3px rgba(0,0,0,0.00)',
-          },
-          '&::-webkit-scrollbar-thumb': {
-            backgroundColor: grey[50],
-            borderRadius: '10px',
-          },
         },
       },
     },
@@ -288,65 +262,7 @@ export const darkTheme = createTheme({
           },
           '&::-webkit-scrollbar-thumb': {
             backgroundColor: grey[50],
-            borderRadius: '10px',
-          },
-        },
-      },
-    },
-    MuiModal: {
-      defaultProps: {
-        slotProps: {
-          backdrop: {
-            style: {
-              backgroundColor: '#3f3f3f90',
-            },
-          },
-        },
-      },
-    },
-    MuiIconButton: {
-      styleOverrides: {
-        root: {
-          '&.MuiPickersArrowSwitcher-button': {
-            color: grey[100],
-          },
-          '&.MuiPickersCalendarHeader-switchViewButton': {
-            color: grey[100],
-          },
-        },
-      },
-    },
-    MuiButtonBase: {
-      styleOverrides: {
-        root: {
-          '&.MuiPickersDay-root': {
-            ':hover': {
-              backgroundColor: deepPurple[500],
-            },
-          },
-          '&.MuiMenuItem-root .MuiMultiSectionDigitalClockSection-item': {
-            color: 'red',
-          },
-          '&.MuiIconButton-root ': {
-            color: grey[100],
-          },
-        },
-      },
-    },
-    MuiList: {
-      styleOverrides: {
-        root: {
-          '&::-webkit-scrollbar': {
-            width: '5px',
-            height: '5px',
-          },
-          '&::-webkit-scrollbar-track': {
-            boxShadow: 'inset 0 0 3px rgba(0,0,0,0.00)',
-            webkitBoxShadow: 'inset 0 0 3px rgba(0,0,0,0.00)',
-          },
-          '&::-webkit-scrollbar-thumb': {
-            backgroundColor: grey[50],
-            borderRadius: '10px',
+            borderRadius: '8px',
           },
         },
       },

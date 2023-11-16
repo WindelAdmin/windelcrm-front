@@ -2,14 +2,14 @@ import { createTheme } from '@mui/material/styles';
 import { Quicksand } from 'next/font/google';
 
 import {
+  blue,
   blueGrey,
   common,
-  grey,
   deepPurple,
+  grey,
   lightBlue,
   orange,
   red,
-  blue,
 } from '@mui/material/colors';
 
 const quicksand = Quicksand({
@@ -83,9 +83,6 @@ export const lightTheme = createTheme({
   typography: {
     fontFamily: quicksand.style.fontFamily,
   },
-  shape: {
-    borderRadius: 10,
-  },
   components: {
     MuiAlert: {
       styleOverrides: {
@@ -107,20 +104,6 @@ export const lightTheme = createTheme({
           backgroundColor: grey[100],
           ':hover': {
             backgroundColor: grey[200],
-          },
-        },
-        listbox: {
-          '&::-webkit-scrollbar': {
-            width: '5px',
-            height: '5px',
-          },
-          '&::-webkit-scrollbar-track': {
-            boxShadow: 'inset 0 0 3px rgba(0,0,0,0.00)',
-            webkitBoxShadow: 'inset 0 0 3px rgba(0,0,0,0.00)',
-          },
-          '&::-webkit-scrollbar-thumb': {
-            backgroundColor: grey[500],
-            borderRadius: '10px',
           },
         },
       },
@@ -229,25 +212,7 @@ export const lightTheme = createTheme({
           },
           '&::-webkit-scrollbar-thumb': {
             backgroundColor: blue[900],
-            borderRadius: '10px',
-          },
-        },
-      },
-    },
-    MuiList: {
-      styleOverrides: {
-        root: {
-          '&::-webkit-scrollbar': {
-            width: '5px',
-            height: '5px',
-          },
-          '&::-webkit-scrollbar-track': {
-            boxShadow: 'inset 0 0 3px rgba(0,0,0,0.00)',
-            webkitBoxShadow: 'inset 0 0 3px rgba(0,0,0,0.00)',
-          },
-          '&::-webkit-scrollbar-thumb': {
-            backgroundColor: grey[500],
-            borderRadius: '10px',
+            borderRadius: '8px',
           },
         },
       },

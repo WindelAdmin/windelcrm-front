@@ -1,38 +1,12 @@
 import { ReactNode } from 'react'
 
 export interface UserProviderProps {
-  administrador: boolean
-  cpfCnpj: string
-  dataValidadeVersaoTeste: null
+  id: string
   email: string
-  empresaId: number
-  liberaCadastros: boolean
-  liberaCompras: boolean
-  liberaDashBoardCurvaAbcProd: boolean
-  liberaDashBoardFatSemestral: boolean
-  liberaDashBoardFinanceiro: boolean
-  liberaDashBoardFluxoDiario: boolean
-  liberaDashBoardFluxoMensal: boolean
-  liberaDashBoardMaiorDespesa: boolean
-  liberaDashBoardPagSemestral: boolean
-  liberaDashBoardTopReceitas: boolean
-  liberaDashboard: boolean
-  liberaFinanceiro: boolean
-  liberaIndGerais: boolean
-  liberaIndProdutos: boolean
-  liberaRelatorios: boolean
-  liberaVendas: boolean
-  name: string
-  permissionCreate: boolean
-  permissionDelete: boolean
-  permissionUpdate: boolean
-  tomadorDeDecisao: boolean
-  usuarioId: number
-  usuarioMaster: boolean
-  usuarioPrincipal: boolean
-  usuariosConectados: number
-  usuariosSimultaneos: number
-  versaoTeste: boolean
+  companyId: number
+  name: string,
+  permissions: {id: number, code: string, description: string, type: string}[]
+  
 }
 
 export interface UserProviderContextProps {
@@ -45,11 +19,9 @@ export interface InfoUserProps {
 export interface UserProps {
   email?: string;
   token?: string;
-  expiredTest: boolean;
   userNotFound: boolean;
   hasAuthError: boolean;
   userUnauthorized: boolean;
-  userMaxNumber: boolean;
   enterpriseInfo: string;
   regPerPage: number;
 }
@@ -62,11 +34,9 @@ export interface ContextProps extends UserProps {
     backdrop: boolean
   ) => Promise<void>;
   logout: () => void;
-  closeExpiredTestModal: () => void;
   closeUserNotFoundModal: () => void;
   closeHasAuthErrorModal: () => void;
   closeUserUnauthorizedModal: () => void;
-  closeUserMaxNumber: () => void;
 }
 
 export interface AuthProviderProps {

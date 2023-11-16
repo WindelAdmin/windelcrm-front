@@ -1,4 +1,7 @@
 'use client';
+import { Box } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
+import { parseCookies, setCookie } from 'nookies';
 import {
   createContext,
   useCallback,
@@ -6,11 +9,8 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { ThemeProvider } from '@mui/material/styles';
-import { darkTheme, lightTheme } from './themes'
-import { Box } from '@mui/material';
 import { ThemeProps, ThemeProviderProps } from './interface';
-import { parseCookies, setCookie } from 'nookies';
+import { darkTheme, lightTheme } from './themes';
 
 export const ThemeContext = createContext({} as ThemeProps);
 
