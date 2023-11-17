@@ -1,6 +1,7 @@
-import { darkTheme } from '@/app/context/ThemeContext/darkTheme';
-import { lightTheme } from '@/app/context/ThemeContext/lightTheme';
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+;
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
 import { Toolbar } from '@mui/material';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import { styled } from '@mui/material/styles';
@@ -46,14 +47,14 @@ export function AppBarDesktop({ open, children }: AppBarDesktopProps) {
         position: 'fixed',
         bgcolor:
           themeName === 'light'
-            ? lightTheme.palette.background.default
-            : darkTheme.palette.background.default,
+            ? LightTheme.palette.background.default
+            : DarkTheme.palette.background.default,
         height: '5rem',
         borderBottom: '1px solid',
         borderBottomColor:
           themeName === 'light'
-            ? darkTheme.palette.deepGrey.main
-            : darkTheme.palette.background.paper,
+            ? LightTheme.palette.divider
+            : DarkTheme.palette.background.paper,
         mx: 'auto',
         display: 'flex',
         alignItems: 'center',

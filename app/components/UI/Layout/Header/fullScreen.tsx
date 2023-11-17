@@ -1,5 +1,7 @@
-import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
 import { ZoomInMapRounded, ZoomOutMapRounded } from '@mui/icons-material';
 import { IconButtonProps } from '@mui/material';
 import { IconButtonTransitionProp } from '../../IconButton/Button.Interface';
@@ -27,8 +29,8 @@ export function FullScreen({
           sx={{
             color:
               themeName === 'light'
-                ? lightTheme.palette.info.main
-                : darkTheme.palette.deepGrey.main,
+                ? LightTheme.palette.info.main
+                : DarkTheme.palette.deepGrey.main,
           }}
         />
       ) : (
@@ -36,8 +38,8 @@ export function FullScreen({
           sx={{
             color:
               themeName === 'light'
-                ? lightTheme.palette.info.main
-                : darkTheme.palette.deepGrey.main,
+                ? LightTheme.palette.info.main
+                : DarkTheme.palette.deepGrey.main,
           }}
         />
       )}

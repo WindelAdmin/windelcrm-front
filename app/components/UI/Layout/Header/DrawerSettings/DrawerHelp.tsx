@@ -1,16 +1,17 @@
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme'
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook'
 import { Help } from '@mui/icons-material'
 import { Box, Stack, Typography } from '@mui/material'
 
-import { darkTheme } from '@/app/context/ThemeContext/themes'
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext'
+
 import Link from 'next/link'
 
 export function DrawerHelp() {
   const { themeName, toggleTheme } = useAppThemeContext()
   const titleAndIconColor =
     themeName === 'light'
-      ? darkTheme.palette.text.primary
-      : darkTheme.palette.text.primary
+      ? DarkTheme.palette.text.primary
+      : DarkTheme.palette.text.primary
   return (
     <Stack sx={{ m: 0, p: 2, mb: '4rem' }}>
       <Box

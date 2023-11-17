@@ -2,15 +2,14 @@
 import { Box, Paper, Toolbar } from '@mui/material';
 import { useState } from 'react';
 
-import { useToggleDrawer } from '@/app/context/ToggleDrawer/useToggleDrawer';
-import { BoxButtons } from './Header/boxButtons';
 import { ToggleDrawerOpen } from './Header/toggleDrawerOpen';
 import { SidebarMenu } from './Sidebar/MenuSidebar';
 
-import { useInfoEmpresa } from '@/app/context/CompanyContext/useInfoEmpresa';
 import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
 import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
+import { useInfoCompany } from '@/app/hooks/UseInfoCompany.hook';
+import { useToggleDrawer } from '@/app/hooks/UseToggleDrawer.hook';
 import { TypographyTitle } from '../Typography/Typography.Title/WTypography.Title';
 import { AppBarDesktop } from './AppBar/Appbar.Desktop';
 import { AppBarMobile } from './AppBar/Appbar.Mobile';
@@ -20,10 +19,11 @@ import { HeaderSidebar } from './Header/Sidebar/Sidebar.Header.Desktop';
 import { HeaderSidebarMobile } from './Header/Sidebar/Sidebar.Header.Mobile';
 import { ToggleDrawerMobile } from './Header/ToggleDrawerMobile';
 import { LayoutSidebarAppBarProps } from './Layout.Interface';
+import { BoxButtons } from './boxButtons';
 
 
 export function LayoutSidebarAppBar({ children }: LayoutSidebarAppBarProps) {
-  const empresa = useInfoEmpresa();
+  const company = useInfoCompany();
   const { open } = useToggleDrawer();
   const { themeName } = useAppThemeContext();
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -55,14 +55,12 @@ export function LayoutSidebarAppBar({ children }: LayoutSidebarAppBarProps) {
           <TypographyTitle
             fontSize="1.2rem"
             fontWeight={600}
-            text={empresa?.nome}
-            color={
-              themeName === 'light'
-                ? LightTheme.palette.common.black
-                : DarkTheme.palette.common.white
-            }
+            text={'Soulbyte Studio'}
+            color={themeName === 'light'
+              ? LightTheme.palette.deepGrey.light
+              : DarkTheme.palette.deepGrey.main}
           />
-          <BoxButtons
+        <BoxButtons
             isFullScreen={isFullScreen}
             toggleFullScreen={toggleFullScreen}
             mobile={false}
@@ -74,11 +72,6 @@ export function LayoutSidebarAppBar({ children }: LayoutSidebarAppBarProps) {
         <Box sx={{ width: '100%' }}>
           <ToggleDrawerMobile />
         </Box>
-        <BoxButtons
-          isFullScreen={isFullScreen}
-          toggleFullScreen={toggleFullScreen}
-          mobile={true}
-        />
       </AppBarMobile>
 
       <DrawerMobile>
@@ -115,8 +108,7 @@ export function LayoutSidebarAppBar({ children }: LayoutSidebarAppBarProps) {
             overflow: { xs: 'inherit', sm: 'inherit', md: 'auto' },
           }}
         >
-          <Toolbar />
-
+          <Toolbar sx={{mb: 5}}/>
           {children}
         </Box>
       </Box>

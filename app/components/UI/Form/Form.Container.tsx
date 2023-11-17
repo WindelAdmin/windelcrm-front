@@ -1,6 +1,7 @@
-import React, { useState, useEffect, ReactNode } from 'react';
-import { GridContainer } from '@/app/components/Grid/GridContainer';
-import { GridItem } from '@/app/components/Grid/GridItem';
+import { ReactNode, useEffect, useState } from 'react';
+import { GridContainer } from '../Grid/GridContainer';
+import { GridItem } from '../Grid/GridItem';
+
 
 interface ContainerFormProps {
   waitTime: number;

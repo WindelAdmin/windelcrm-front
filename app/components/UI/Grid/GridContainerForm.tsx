@@ -1,10 +1,15 @@
-import { Card, Grid } from '@mui/material';
+import { Card, Grid, GridProps } from '@mui/material';
 
-import { useAppThemeContext } from '@/app/context/Theme/useAppTheme';
-import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
+import { ReactNode } from 'react';
 import { TypographyTitle } from '../Typography/Typography.Title/WTypography.Title';
-import { GridContainerFormProps } from './GridContainer.Interface';
 
+export interface GridContainerFormProps extends GridProps {
+  children: ReactNode;
+  title?: string;
+}
 
 export function GridContainerForm({
   children,
@@ -17,8 +22,8 @@ export function GridContainerForm({
       sx={{
         bgcolor:
           themeName == 'light'
-            ? lightTheme.palette.common.white
-            : darkTheme.palette.common.black,
+            ? LightTheme.palette.common.white
+            : DarkTheme.palette.common.black,
         paddingX: 4,
         paddingBottom: 4,
         paddingTop: 2,

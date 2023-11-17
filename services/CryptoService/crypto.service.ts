@@ -1,29 +1,72 @@
+async function generateKey(): Promise<CryptoKey | any> {
+  const aesKey = hexStringToArrayBuffer(process.env.CRYPTO_KEY as string);
 
+  if (!aesKey) {
+    console.error('Chave AES não encontrada ou inválida.');
+    return null;
+  }
 
-import { createCipheriv, createDecipheriv, randomBytes } from "crypto"
+  try {
+    const cryptoKey = await crypto.subtle.importKey(
+      'raw',
+      aesKey,
+      { name: 'AES-CTR' },
+      false,
+      ['encrypt', 'decrypt']
+    );
 
-
-export function encrypt(text: string): string {
-  
-  const iv = randomBytes(16)
-  
-  const cipher = createCipheriv("aes-256-ctr", Buffer.from(process.env.SECRET_KEY as string), iv)
-  let encrypted = cipher.update(text, 'utf8', 'hex')
-  encrypted += cipher.final('hex')
-  return Buffer.from(JSON.stringify({ hash: encrypted, iv: iv })).toString('base64')
+    if (cryptoKey instanceof CryptoKey) {
+      return cryptoKey;
+    } else {
+      console.error(
+        'Erro ao importar a chave: A chave importada não é uma instância válida de CryptoKey.'
+      );
+    }
+  } catch (error) {
+    console.error('Erro ao importar a chave:', error);
+  }
 }
 
-export function decrypt(encryptedText: string): string {
-  const hashObj = JSON.parse(Buffer.from(encryptedText, 'base64').toString())
-  const decipher = createDecipheriv("aes-256-ctr", Buffer.from(process.env.SECRET_KEY as string), Buffer.from(hashObj.iv))
-  let decrypted = decipher.update(hashObj.hash, 'hex', 'utf8')
-  decrypted += decipher.final('utf8')
-  return decrypted
+function hexStringToArrayBuffer(hexString: string): ArrayBuffer {
+  const bufferLength = hexString.length / 2;
+  const buffer = new ArrayBuffer(bufferLength);
+  const uint8Array = new Uint8Array(buffer);
+
+  for (let i = 0; i < bufferLength; i++) {
+    const byte = parseInt(hexString.substr(i * 2, 2), 16);
+    uint8Array[i] = byte;
+  }
+
+  return buffer;
 }
-export function compareDecryptedText(encryptedText: string, referenceText: string): boolean {
-  const decryptedText = decrypt(encryptedText)
-  return decryptedText === referenceText
+
+
+function arrayBufferToHexString(buffer: ArrayBuffer): string {
+  const byteArray = new Uint8Array(buffer);
+  const hexArray = Array.from(byteArray).map(byte => byte.toString(16).padStart(2, '0'));
+  return hexArray.join('');
 }
 
+export async function encrypt(data: string): Promise<string>{
+  const counter = new Uint8Array(16);
+  const encodedData = new TextEncoder().encode(data);
 
+  const encryptedData = await crypto.subtle.encrypt(
+    { name: 'AES-CTR', counter: counter, length: 64 },
+    await generateKey(),
+    encodedData,
+  );
 
+  return arrayBufferToHexString(encryptedData);
+}
+
+export async function decrypt(encryptedData: string) {
+  const counter = new Uint8Array(16);
+  const decryptedData = await crypto.subtle.decrypt(
+    { name: 'AES-CTR', counter: counter, length: 64 },
+    await generateKey(),
+    hexStringToArrayBuffer(encryptedData)
+  );
+
+  return new TextDecoder('utf-8').decode(decryptedData);
+}

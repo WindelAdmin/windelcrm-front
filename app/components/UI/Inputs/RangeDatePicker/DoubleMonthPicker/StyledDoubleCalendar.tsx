@@ -1,58 +1,58 @@
-import { darkTheme, lightTheme } from "@/app/context/ThemeContext/themes";
-
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
 
 export const StyledCustomDay = (isSelected: boolean, isLightTheme: boolean) => {
   return {
     color: isSelected
       ? isLightTheme
-        ? lightTheme.palette.info.contrastText
-        : darkTheme.palette.warning.contrastText
+        ? LightTheme.palette.info.contrastText
+        : DarkTheme.palette.warning.contrastText
       : isLightTheme
-      ? lightTheme.palette.text.primary
-      : darkTheme.palette.text.primary,
+      ? LightTheme.palette.text.primary
+      : DarkTheme.palette.text.primary,
     bgcolor: isSelected
       ? isLightTheme
-        ? lightTheme.palette.info.main
-        : darkTheme.palette.primary.main
-      : "transparent",
-    ":hover": {
+        ? LightTheme.palette.info.main
+        : DarkTheme.palette.primary.main
+      : 'transparent',
+    ':hover': {
       bgcolor: isLightTheme
-        ? lightTheme.palette.info.dark
-        : darkTheme.palette.primary.dark,
+        ? LightTheme.palette.info.dark
+        : DarkTheme.palette.primary.dark,
       color: isLightTheme
-        ? lightTheme.palette.text.primary
-        : darkTheme.palette.text.secondary,
+        ? LightTheme.palette.text.primary
+        : DarkTheme.palette.text.secondary,
     },
-    ":focus": {
+    ':focus': {
       bgcolor: isLightTheme
-        ? lightTheme.palette.info.dark
-        : darkTheme.palette.primary.dark,
+        ? LightTheme.palette.info.dark
+        : DarkTheme.palette.primary.dark,
     },
 
-    "&.Mui-selected": {
+    '&.Mui-selected': {
       fontWeight: 400,
       color: isSelected
         ? isLightTheme
-          ? lightTheme.palette.info.contrastText
-          : darkTheme.palette.warning.contrastText
+          ? LightTheme.palette.info.contrastText
+          : DarkTheme.palette.warning.contrastText
         : isLightTheme
-        ? lightTheme.palette.text.primary
-        : darkTheme.palette.text.primary,
+        ? LightTheme.palette.text.primary
+        : DarkTheme.palette.text.primary,
 
       bgcolor: isSelected
         ? isLightTheme
-          ? lightTheme.palette.info.main
-          : darkTheme.palette.primary.main
-        : "transparent",
-      ":hover": {
+          ? LightTheme.palette.info.main
+          : DarkTheme.palette.primary.main
+        : 'transparent',
+      ':hover': {
         bgcolor: isLightTheme
-          ? lightTheme.palette.info.dark
-          : darkTheme.palette.primary.dark,
+          ? LightTheme.palette.info.dark
+          : DarkTheme.palette.primary.dark,
       },
-      ":focus": {
+      ':focus': {
         bgcolor: isLightTheme
-          ? lightTheme.palette.info.dark
-          : darkTheme.palette.primary.dark,
+          ? LightTheme.palette.info.dark
+          : DarkTheme.palette.primary.dark,
       },
     },
   };

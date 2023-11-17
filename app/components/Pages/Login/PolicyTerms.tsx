@@ -1,10 +1,10 @@
 'use client';
 
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
 import { Box, Grid, Paper, Stack } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { AuthContainer } from './Auth.Container';
 
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
 import { ArrowBack } from '@mui/icons-material';
 import { WButton } from '../../UI/Button/WButton';
 import { GridContainer } from '../../UI/Grid/GridContainer';

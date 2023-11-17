@@ -1,10 +1,11 @@
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
+import { useToggleDrawer } from '@/app/hooks/UseToggleDrawer.hook';
 import MuiDrawer from '@mui/material/Drawer';
 import { styled } from '@mui/material/styles';
 import { ReactNode } from 'react';
 
-import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
-import { useToggleDrawer } from '@/app/context/ToggleDrawer/useToggleDrawer';
 
 
 interface DrawerSidebarProps {
@@ -24,8 +25,8 @@ const Drawer = styled(MuiDrawer, {
       width: drawerWidth,
       backgroundColor:
         themeName === 'light'
-          ? lightTheme.palette.info.main
-          : darkTheme.palette.common.black,
+          ? LightTheme.palette.info.main
+          : DarkTheme.palette.common.black,
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
@@ -44,8 +45,8 @@ const Drawer = styled(MuiDrawer, {
       borderRight: '1px solid',
       borderRightColor:
         themeName === 'light'
-          ? lightTheme.palette.background.paper
-          : darkTheme.palette.common.black,
+          ? LightTheme.palette.background.paper
+          : DarkTheme.palette.common.black,
     },
   };
 });

@@ -1,5 +1,7 @@
-import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
 import Drawer from '@mui/material/Drawer';
 import React, { ReactNode } from 'react';
 
@@ -30,8 +32,8 @@ export function DrawerSettings({
           boxSizing: 'border-box',
           bgcolor:
             themeName === 'light'
-              ? lightTheme.palette.info.main
-              : darkTheme.palette.background.default,
+              ? LightTheme.palette.info.main
+              : DarkTheme.palette.background.default,
           width: '300px',
         },
       }}

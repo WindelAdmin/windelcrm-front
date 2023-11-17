@@ -1,12 +1,8 @@
 'use client';
-import React from 'react';
-import { Typography, Link } from '@mui/material';
+import { Link, Typography } from '@mui/material';
 
+import { cookieConsentment, cookieConsentmentPolicy } from '@/shared/messages/AuthMessage.enum';
 import CookieConsent from 'react-cookie-consent';
-import {
-  cookieConsentment,
-  cookieConsentmentPolicy,
-} from '@/utils/Auth.Message';
 
 export function AuthCookie() {
   return (

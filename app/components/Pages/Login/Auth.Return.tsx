@@ -1,4 +1,4 @@
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
 import { ArrowBack } from '@mui/icons-material';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/navigation';

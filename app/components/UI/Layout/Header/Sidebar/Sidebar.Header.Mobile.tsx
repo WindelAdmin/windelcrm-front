@@ -1,35 +1,11 @@
-import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
 import { List, Paper } from '@mui/material';
-import { useState } from 'react';
-import { MenuItemSidebar } from '../../Sidebar/MenuItemSidebar/MenuItemSidebar';
-import { MenuMainProps } from '../../Sidebar/Sidebar.Interface';
 
 export function HeaderSidebarMobile() {
   const { themeName } = useAppThemeContext();
-  const [searchData, setSearchData] = useState({
-    page: 1,
-  });
-  const menuMain: MenuMainProps[] = [
-    {
-      id: 1,
-      menuId: 'alex',
-      parent: false,
-      children: false,
-      description: 'menuInicial',
-      icon: null,
-      link: null,
-    },
-    {
-      id: 1,
-      menuId: 'alex',
-      parent: false,
-      children: false,
-      description: 'menuInicial',
-      icon: null,
-      link: null,
-    },
-  ];
 
   return (
     <>
@@ -40,8 +16,8 @@ export function HeaderSidebarMobile() {
           borderRadius: 0,
           bgcolor:
             themeName === 'light'
-              ? lightTheme.palette.info.main
-              : darkTheme.palette.common.black,
+              ? LightTheme.palette.info.main
+              : DarkTheme.palette.common.black,
         }}
       >
         <List
@@ -50,18 +26,11 @@ export function HeaderSidebarMobile() {
             maxWidth: 280,
             bgcolor:
               themeName === 'light'
-                ? lightTheme.palette.info.main
-                : darkTheme.palette.common.black,
+                ? LightTheme.palette.info.main
+                : DarkTheme.palette.common.black,
           }}
         >
-          {menuMain?.map((opt: MenuMainProps, idx: number) => (
-            <MenuItemSidebar
-              key={opt.id}
-              module={opt}
-              idx={idx}
-              menuData={menuMain}
-            />
-          ))}
+          
         </List>
       </Paper>
     </>

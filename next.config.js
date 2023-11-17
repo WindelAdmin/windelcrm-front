@@ -7,7 +7,7 @@ const nextConfig = {
   },
   env: {
     HOST: process.env.HOST,
-    SECRET_KEY: process.env.SECRET_KEY
+    CRYPTO_KEY: process.env.CRYPTO_KEY
   },
 };
 

@@ -1,7 +1,6 @@
 'use client';
-import React from 'react';
+import LoadingWindel from '@/public/assets/lottie/loader-simple.json';
 import Lottie from 'lottie-react';
-import LoadingWindel from '../../../public/assets/lottie/loader-simple.json';
 
 const style = {
   height: 100,

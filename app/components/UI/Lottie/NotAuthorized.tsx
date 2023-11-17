@@ -1,14 +1,10 @@
 'use client';
 
-import { useLottieAnimation } from '@/app/hooks/Lottie/useLottieAnimation';
-import notAuthorizedDark from '../../../public/assets/lottie/notAuthorizedDark.json';
-import notAuthorizedLight from '../../../public/assets/lottie/notAuthorizedLight.json';
-
-
+import { useLottieAnimation } from '@/app/hooks/UseLottieAnimation.hook';
 
 export function NotAuthorizedLottieDark() {
   const { lottieView } = useLottieAnimation({
-    animationData: notAuthorizedDark,
+    animationData: NotAuthorizedLottieDark,
     typeAnimation: 'simple',
   });
 
@@ -17,7 +13,7 @@ export function NotAuthorizedLottieDark() {
 
 export function NotAuthorizedLottieLight() {
   const { lottieView } = useLottieAnimation({
-    animationData: notAuthorizedLight,
+    animationData: NotAuthorizedLottieLight,
     typeAnimation: 'simple',
   });
 

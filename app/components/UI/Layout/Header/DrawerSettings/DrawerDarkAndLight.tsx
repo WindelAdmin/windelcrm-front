@@ -1,13 +1,14 @@
-import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
 import { Visibility } from '@mui/icons-material';
 import {
-    Box,
-    FormControlLabel,
-    FormGroup,
-    Stack,
-    Switch,
-    Typography,
+  Box,
+  FormControlLabel,
+  FormGroup,
+  Stack,
+  Switch,
+  Typography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
@@ -30,12 +31,12 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       },
       '& + .MuiSwitch-track': {
         opacity: 1,
-        backgroundColor: lightTheme.palette.secondary.main,
+        backgroundColor: LightTheme.palette.secondary.main,
       },
     },
   },
   '& .MuiSwitch-thumb': {
-    backgroundColor: lightTheme.palette.secondary.main,
+    backgroundColor: LightTheme.palette.secondary.main,
     width: 32,
     height: 32,
     '&:before': {
@@ -54,7 +55,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
   '& .MuiSwitch-track': {
     opacity: 1,
-    backgroundColor: lightTheme.palette.secondary.main,
+    backgroundColor: LightTheme.palette.secondary.main,
     borderRadius: 20 / 2,
   },
 }));
@@ -63,8 +64,8 @@ export function DrawerDarkAndLight() {
   const { themeName, toggleTheme } = useAppThemeContext();
   const titleAndIconColor =
     themeName === 'light'
-      ? darkTheme.palette.text.primary
-      : darkTheme.palette.text.primary;
+      ? DarkTheme.palette.text.primary
+      : DarkTheme.palette.text.primary;
   return (
     <Stack sx={{ m: 0, p: 2, mb: '2rem' }}>
       <Box

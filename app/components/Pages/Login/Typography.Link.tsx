@@ -1,5 +1,7 @@
-import { Typography } from '@mui/material';
-import { ITypographyLogin } from './interfaces/Typography.Link.Interface';
+import { Typography, TypographyProps } from '@mui/material';
+export interface ITypographyLogin extends TypographyProps {
+  text: string;
+}
 
 export function TypographyLogin({ text, ...rest }: ITypographyLogin) {
   return (

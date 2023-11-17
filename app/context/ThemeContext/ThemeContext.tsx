@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { parseCookies, setCookie } from 'nookies';
 import {
+  ReactNode,
   createContext,
   useCallback,
   useEffect,
@@ -11,7 +12,14 @@ import {
 } from 'react';
 import { DarkTheme } from './Themes/DarkTheme';
 import { LightTheme } from './Themes/LightTheme';
-import { ThemeProps, ThemeProviderProps } from './interface';
+export interface ThemeProps {
+  themeName: "dark" | "light";
+  toggleTheme: () => void;
+}
+
+export interface ThemeProviderProps {
+  children: ReactNode;
+}
 
 export const ThemeContext = createContext({} as ThemeProps);
 

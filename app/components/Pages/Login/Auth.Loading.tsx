@@ -1,5 +1,6 @@
-import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
 import { Backdrop, Slide } from '@mui/material';
 import { WindelLoading } from '../../UI/Lottie/LottieWindel';
 interface WBackDropProps {
@@ -15,11 +16,11 @@ export function WBackdrop({ open }: WBackDropProps) {
           color: '#fff',
           bgcolor:
             themeName === 'light'
-              ? lightTheme.palette.common.white
-              : darkTheme.palette.common.black,
+              ? LightTheme.palette.common.white
+              : DarkTheme.palette.common.black,
           zIndex: (theme) => theme.zIndex.drawer + 1,
-          easing: lightTheme.transitions.easing.sharp,
-          duration: lightTheme.transitions.duration.enteringScreen,
+          easing: LightTheme.transitions.easing.sharp,
+          duration: LightTheme.transitions.duration.enteringScreen,
         }}
         open={open}
       >

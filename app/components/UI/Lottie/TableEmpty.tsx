@@ -1,12 +1,10 @@
 'use client';
-import React from 'react';
+import TableEmptyFilesDarkTheme from '@/public/assets/lottie/TableEmptyFiles_darkTheme.json';
+import TableEmptyFilesLightTheme from '@/public/assets/lottie/TableEmptyFiles_lightTheme.json';
 import Lottie from 'lottie-react';
-import TableEmptyFilesLightTheme from '../../../public/assets/lottie/TableEmptyFiles_lightTheme.json';
-import TableEmptyFilesDarkTheme from '../../../public/assets/lottie/TableEmptyFiles_darkTheme.json';
 
 import { Box, Stack } from '@mui/material';
 import { TypographyTitle } from '../Typography/Typography.Title/WTypography.Title';
-
 
 const style = {
   height: 300,
@@ -43,7 +41,6 @@ export function TableEmpty() {
     </Stack>
   );
 }
-function useAppThemeContext(): { themeName: any; } {
+function useAppThemeContext(): { themeName: any } {
   throw new Error('Function not implemented.');
 }
-

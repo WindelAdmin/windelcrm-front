@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
 import { FormControlLabel, Switch, SwitchProps } from '@mui/material';
 import { useField } from '@unform/core';
-import { useAppThemeContext } from '@/app/context/Theme/useAppTheme';
+import { useEffect, useState } from 'react';
 
 
 type TVSwitchProps = SwitchProps & {

@@ -1,11 +1,10 @@
 'use client';
 import { LayoutSidebarAppBar } from '@/app/components/UI/Layout';
 import ThemeRegistry from '@/app/context/ThemeContext/ThemeRegistry';
-import { AvatarProvider } from '@/app/context/avatarProvide';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { ptBR } from 'date-fns/locale';
 import React from 'react';
-
-
-
 
 export default function AuthenticatedLayout({
   children,
@@ -13,12 +12,15 @@ export default function AuthenticatedLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
+    <html>
       <body>
-        <ThemeRegistry>
-          <AvatarProvider>
-            <LayoutSidebarAppBar>{children}</LayoutSidebarAppBar>
-          </AvatarProvider>
+       <ThemeRegistry>
+            <LocalizationProvider
+              dateAdapter={AdapterDateFns}
+              adapterLocale={ptBR}
+            >
+              <LayoutSidebarAppBar>{children}</LayoutSidebarAppBar>
+            </LocalizationProvider>
         </ThemeRegistry>
       </body>
     </html>

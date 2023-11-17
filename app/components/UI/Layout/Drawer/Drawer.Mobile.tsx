@@ -1,6 +1,8 @@
-import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
-import { useToggleDrawerMobile } from '@/app/context/ToggleDrawerMobile/useToggleDrawerMobile';
+
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
+import { useToggleDrawerMobile } from '@/app/hooks/UseToggleDrawerMobile.hook';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import { ReactNode } from 'react';
@@ -29,8 +31,8 @@ export function DrawerMobile({ children }: DrawerMobileProps) {
             width: '280px',
             backgroundColor:
               themeName === 'light'
-                ? lightTheme.palette.info.main
-                : darkTheme.palette.common.black,
+                ? LightTheme.palette.info.main
+                : DarkTheme.palette.common.black,
           },
         }}
       >

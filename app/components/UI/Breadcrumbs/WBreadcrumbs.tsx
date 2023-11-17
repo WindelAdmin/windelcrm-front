@@ -5,26 +5,27 @@ import * as React from 'react';
 
 
 import {
-    AccountCircle,
-    AssessmentRounded,
-    BubbleChart,
-    DashboardRounded,
-    HelpRounded,
-    Home,
-    MonetizationOnRounded,
-    Notifications,
-    PointOfSaleRounded,
-    PostAddRounded,
-    SecurityRounded,
-    ShoppingCartRounded,
+  AccountCircle,
+  AssessmentRounded,
+  BubbleChart,
+  DashboardRounded,
+  HelpRounded,
+  Home,
+  MonetizationOnRounded,
+  Notifications,
+  PointOfSaleRounded,
+  PostAddRounded,
+  SecurityRounded,
+  ShoppingCartRounded,
 } from '@mui/icons-material';
 
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
 import Link from 'next/link';
 import { TypographyText } from '../Typography/Typography.Text/WTypography.Text';
 import { BreadcrumbsProps, IconMapping } from './Breadcrumbs.Interface';
 
-import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
 const iconMap: IconMapping[] = [
   {
     fatherValue: 'Cadastros',
@@ -79,8 +80,8 @@ function getIconToRender(father: string | undefined): React.ReactElement {
         mr: 0.5,
         color:
           themeName === 'light'
-            ? lightTheme.palette.info.main
-            : darkTheme.palette.warning.main,
+            ? LightTheme.palette.info.main
+            : DarkTheme.palette.warning.main,
       }}
       fontSize='inherit'
     />
@@ -98,8 +99,8 @@ export function WBreadcrumbs({ father, content }: BreadcrumbsProps) {
         sx={{
           color:
             themeName === 'light'
-              ? lightTheme.palette.info.main
-              : darkTheme.palette.deepGrey.light,
+              ? LightTheme.palette.info.main
+              : DarkTheme.palette.deepGrey.light,
         }}
       >
         <Link
@@ -117,8 +118,8 @@ export function WBreadcrumbs({ father, content }: BreadcrumbsProps) {
               mr: 0.5,
               color:
                 themeName === 'light'
-                  ? lightTheme.palette.info.main
-                  : darkTheme.palette.deepGrey.light,
+                  ? LightTheme.palette.info.main
+                  : DarkTheme.palette.deepGrey.light,
             }}
             fontSize='inherit'
           />
@@ -132,8 +133,8 @@ export function WBreadcrumbs({ father, content }: BreadcrumbsProps) {
               textDecoration: 'none',
               color:
                 themeName === 'light'
-                  ? lightTheme.palette.info.main
-                  : darkTheme.palette.deepGrey.light,
+                  ? LightTheme.palette.info.main
+                  : DarkTheme.palette.deepGrey.light,
               display: 'flex',
               alignItems: 'center',
             }}
@@ -149,8 +150,8 @@ export function WBreadcrumbs({ father, content }: BreadcrumbsProps) {
                 mr: 0.5,
                 color:
                   themeName === 'light'
-                    ? lightTheme.palette.info.dark
-                    : darkTheme.palette.deepGrey.dark,
+                    ? LightTheme.palette.info.dark
+                    : DarkTheme.palette.deepGrey.dark,
               }}
               fontSize='inherit'
             />
@@ -160,8 +161,8 @@ export function WBreadcrumbs({ father, content }: BreadcrumbsProps) {
               text={content}
               color={
                 themeName === 'light'
-                  ? lightTheme.palette.info.dark
-                  : darkTheme.palette.deepGrey.dark
+                  ? LightTheme.palette.info.dark
+                  : DarkTheme.palette.deepGrey.dark
               }
             />
           </Box>

@@ -1,5 +1,7 @@
-import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
 import { Box, Toolbar } from '@mui/material';
 import Image from 'next/image';
 
@@ -17,8 +19,8 @@ export function HeaderSidebar() {
           justifyContent: 'center',
           backgroundColor:
             themeName === 'light'
-              ? lightTheme.palette.info.main
-              : darkTheme.palette.common.black,
+              ? LightTheme.palette.info.main
+              : DarkTheme.palette.common.black,
         }}
       >
         <Image

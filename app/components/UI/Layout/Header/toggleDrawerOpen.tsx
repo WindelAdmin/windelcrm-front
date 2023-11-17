@@ -1,7 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
-import { useToggleDrawer } from '@/app/context/ToggleDrawer/useToggleDrawer';
+
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
+import { useToggleDrawer } from '@/app/hooks/UseToggleDrawer.hook';
 import { FirstPageRounded, LastPageRounded } from '@mui/icons-material';
 import IconButtonMui from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
@@ -34,15 +36,15 @@ export function ToggleDrawerOpen() {
         display: { xs: 'none', sm: 'none', md: 'flex' },
         backgroundColor:
           themeName === 'light'
-            ? lightTheme.palette.info.main
-            : darkTheme.palette.common.black,
+            ? LightTheme.palette.info.main
+            : DarkTheme.palette.common.black,
         color: '#fff',
         ':hover': {
           color: '#fff',
           backgroundColor:
             themeName === 'light'
-              ? lightTheme.palette.info.main
-              : darkTheme.palette.common.black,
+              ? LightTheme.palette.info.main
+              : DarkTheme.palette.common.black,
         },
         ml: '-2.6rem',
         mr: '2rem',

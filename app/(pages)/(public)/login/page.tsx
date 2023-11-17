@@ -6,10 +6,6 @@ import { Form } from '@unform/web';
 import { useState } from 'react';
 import * as yup from 'yup';
 
-
-import { useAuth } from '@/app/context/UserProvider/useAuth';
-import { useWForm } from '@/app/hooks/WForm/useWForm';
-
 import { AuthContainer } from '@/app/components/Pages/Login/Auth.Container';
 import { AuthCookie } from '@/app/components/Pages/Login/Auth.Cookie';
 import { AuthCopyright } from '@/app/components/Pages/Login/Auth.Copyright';
@@ -21,19 +17,22 @@ import { WButton } from '@/app/components/UI/Button/WButton';
 import { WButtonLoading } from '@/app/components/UI/Button/WButton.Loading';
 import { WInput } from '@/app/components/UI/Inputs/WInput';
 import { WInputPassword } from '@/app/components/UI/Inputs/WInputPassword';
-import { lightTheme } from '@/app/context/ThemeContext/themes';
-import { useEnableButton } from '@/app/hooks/EnableButton/useEnableButton';
-import { setErrors } from '@/app/hooks/YupErrors';
-import { signInSchema } from '../../../components/Pages/Login/schemas/Auth.schema';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+
+import { signInSchema } from '@/app/components/Pages/Login/schemas/Auth.schema';
+import { useAuth } from '@/app/hooks/UseAuth.hook';
+import { useEnableButton } from '@/app/hooks/UseEnableButton.hook';
+import { useWForm } from '@/app/hooks/UseWForm.hook';
+import { setErros } from '@/app/hooks/UseYupErrors.hook';
 
 export interface SignInProps {
-  email: string
-  password: string
-  confirmPassword?: string
+  email: string;
+  password: string;
+  confirmPassword?: string;
 }
 
 export default function AuthPage() {
- const { enableButton, handleEnableButton } = useEnableButton();
+  const { enableButton, handleEnableButton } = useEnableButton();
 
   const auth = useAuth();
   const { formRef } = useWForm();
@@ -51,7 +50,7 @@ export default function AuthPage() {
         );
       })
       .catch((errors: yup.ValidationError) => {
-        setErrors({ formRef, errors });
+        setErros({ formRef, errors });
       });
   };
 
@@ -64,7 +63,7 @@ export default function AuthPage() {
           open={auth.userNotFound}
           icon={
             <InfoOutlined
-              sx={{ color: lightTheme.palette.error.light, fontSize: '3rem' }}
+              sx={{ color: LightTheme.palette.error.light, fontSize: '3rem' }}
             />
           }
         >
@@ -89,7 +88,7 @@ export default function AuthPage() {
           open={auth.hasAuthError}
           icon={
             <InfoOutlined
-              sx={{ color: lightTheme.palette.error.light, fontSize: '3rem' }}
+              sx={{ color: LightTheme.palette.error.light, fontSize: '3rem' }}
             />
           }
         >
@@ -113,7 +112,7 @@ export default function AuthPage() {
           open={auth.userUnauthorized}
           icon={
             <InfoOutlined
-              sx={{ color: lightTheme.palette.error.light, fontSize: '3rem' }}
+              sx={{ color: LightTheme.palette.error.light, fontSize: '3rem' }}
             />
           }
         >
@@ -145,39 +144,39 @@ export default function AuthPage() {
             alignItems: 'center',
             justifyContent: 'center',
             height: '100%',
-            width: '100%'
+            width: '100%',
           }}
         >
-          <AuthHeader/>
-            <Container sx={{
+          <AuthHeader />
+          <Container
+            sx={{
               width: '32rem',
-              marginTop: '2rem'
-              }}>
-              <Form onSubmit={handleSignIn} ref={formRef}>
-                <Stack spacing={2}>
-                  <WInput label="Email" name="email" fullWidth />
-                  <WInputPassword
-                    label="Informe sua Senha"
-                    name="password"
-                    onChange={handleEnableButton}
-                  />
-                  <WButtonLoading
-                    type="submit"
-                    textButton={'Acessar'}
-                    color={'info'}
-                    fullWidth
-                    disabled={enableButton}
-                  />
-                </Stack>
-              </Form>
-            </Container>
-            <AuthLinks />
-          </Box>
-          <AuthCopyright />
-          <AuthCookie />
+              marginTop: '2rem',
+            }}
+          >
+            <Form onSubmit={handleSignIn} ref={formRef}>
+              <Stack spacing={2}>
+                <WInput label="Email" name="email" fullWidth />
+                <WInputPassword
+                  label="Informe sua Senha"
+                  name="password"
+                  onChange={handleEnableButton}
+                />
+                <WButtonLoading
+                  type="submit"
+                  textButton={'Acessar'}
+                  color={'info'}
+                  fullWidth
+                  disabled={enableButton}
+                />
+              </Stack>
+            </Form>
+          </Container>
+          <AuthLinks />
+        </Box>
+        <AuthCopyright />
+        <AuthCookie />
       </Grid>
     </AuthContainer>
   );
 }
-
-

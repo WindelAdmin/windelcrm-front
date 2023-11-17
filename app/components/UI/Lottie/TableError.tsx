@@ -1,8 +1,7 @@
-import { useLottieAnimation } from '@/app/hooks/Lottie/useLottieAnimation';
+import { useLottieAnimation } from '@/app/hooks/UseLottieAnimation.hook';
+import TableErrorFiles from '@/public/assets/lottie/TableError.json';
 import { Box, Stack } from '@mui/material';
-import TableErrorFiles from '../../../public/assets/lottie/TableError.json';
 import { TypographyTitle } from '../Typography/Typography.Title/WTypography.Title';
-
 
 export function TableError() {
   const { lottieView } = useLottieAnimation({

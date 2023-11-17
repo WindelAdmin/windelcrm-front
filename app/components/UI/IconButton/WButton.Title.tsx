@@ -1,5 +1,7 @@
-import { useAppThemeContext } from '@/app/context/Theme/useAppTheme';
-import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
+
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
 import { IconButtonProps, Typography } from '@mui/material';
 import { ReactElement, ReactNode } from 'react';
 import { IconButtonTransitionProp } from './Button.Interface';
@@ -25,8 +27,8 @@ export function WIconButtonTitle({
       sx={{
         color:
           themeName === 'light'
-            ? lightTheme.palette.common.black
-            : darkTheme.palette.common.white,
+            ? LightTheme.palette.common.black
+            : DarkTheme.palette.common.white,
         ':hover': {
           backgroundColor: 'inherit',
         },

@@ -1,6 +1,7 @@
 'use client';
-import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
 import { Close, Settings as SettingsIcon } from '@mui/icons-material';
 import { IconButton, Typography } from '@mui/material';
 import React from 'react';
@@ -38,8 +39,8 @@ export function Settings({ mobile }: SettingsProps) {
     };
   const titleAndIconColor =
     themeName === 'light'
-      ? darkTheme.palette.text.primary
-      : darkTheme.palette.text.primary;
+      ? DarkTheme.palette.text.primary
+      : DarkTheme.palette.text.primary;
   return (
     <>
       <DrawerSettings
@@ -94,11 +95,11 @@ export function Settings({ mobile }: SettingsProps) {
             sx={{
               color: mobile
                 ? themeName === 'light'
-                  ? lightTheme.palette.common.white
-                  : darkTheme.palette.common.white
+                  ? LightTheme.palette.common.white
+                  : DarkTheme.palette.common.white
                 : themeName === 'light'
-                ? lightTheme.palette.info.main
-                : darkTheme.palette.deepGrey.main,
+                ? LightTheme.palette.info.main
+                : DarkTheme.palette.deepGrey.main,
             }}
           />
         }

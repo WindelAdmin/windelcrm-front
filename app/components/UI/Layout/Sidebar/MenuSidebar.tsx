@@ -1,15 +1,12 @@
-import { darkTheme, lightTheme } from '@/app/context/ThemeContext/themes';
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext';
+
+import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook';
 import { List, Paper } from '@mui/material';
-import { useState } from 'react';
 
 
 export function SidebarMenu() {
   const { themeName } = useAppThemeContext();
-  const [searchData, setSearchData] = useState({
-    page: 1,
-  });
-
 
   return (
     <Paper
@@ -19,8 +16,8 @@ export function SidebarMenu() {
         borderRadius: 0,
         bgcolor:
           themeName === 'light'
-            ? lightTheme.palette.info.main
-            : darkTheme.palette.common.black,
+            ? LightTheme.palette.info.main
+            : DarkTheme.palette.common.black,
       }}
     >
       <List
@@ -29,8 +26,8 @@ export function SidebarMenu() {
           maxWidth: 280,
           bgcolor:
             themeName === 'light'
-              ? lightTheme.palette.info.main
-              : darkTheme.palette.common.black,
+              ? LightTheme.palette.info.main
+              : DarkTheme.palette.common.black,
         }}
       >
         

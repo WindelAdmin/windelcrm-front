@@ -1,7 +1,10 @@
-import React from 'react';
-import { Grid } from '@mui/material';
+import { Grid, GridProps } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { GridContainerProps } from './GridContainer.Interface';
+import { ReactNode } from 'react';
+
+export interface GridContainerProps extends GridProps {
+  children: ReactNode;
+}
 
 export function GridContainer({ children, ...rest }: GridContainerProps) {
   const resolution = useMediaQuery('(min-height:900px)');

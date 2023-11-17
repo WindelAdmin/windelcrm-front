@@ -1,5 +1,6 @@
-import { lightTheme } from '@/app/context/ThemeContext/themes'
-import { useAppThemeContext } from '@/app/context/ThemeContext/useAppThemeContext'
+
+import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme'
+import { useAppThemeContext } from '@/app/hooks/UseAppTheme.hook'
 import { DashboardCustomize } from '@mui/icons-material'
 import { Box, Button, Typography, colors } from '@mui/material'
 
@@ -13,7 +14,7 @@ export function DrawerFooter() {
         width: '100%',
         backgroundColor:
           themeName === 'light'
-            ? lightTheme.palette.secondary.main
+            ? LightTheme.palette.secondary.main
             : colors.grey[900],
         p: '1rem',
         position: 'absolute',
@@ -69,15 +70,15 @@ export function DrawerFooter() {
             color: colors.grey[100],
             bgcolor:
               themeName === 'light'
-                ? lightTheme.palette.warning.main
-                : lightTheme.palette.primary.main,
+                ? LightTheme.palette.warning.main
+                : LightTheme.palette.primary.main,
             height: '3rem',
             width: '18rem',
             ':hover': {
               bgcolor:
                 themeName === 'light'
-                  ? lightTheme.palette.warning.dark
-                  : lightTheme.palette.primary.dark
+                  ? LightTheme.palette.warning.dark
+                  : LightTheme.palette.primary.dark
             }
           }}
         >

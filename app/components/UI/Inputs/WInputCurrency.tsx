@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material';
 import { useField } from '@unform/core';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { WInputDecimalProps } from './interface';
 
 export function WInputCurrency({
@@ -12,10 +12,35 @@ export function WInputCurrency({
 }: WInputDecimalProps) {
   const { fieldName, registerField, defaultValue, clearError, error } =
     useField(name);
-  const treatedDefaultValue = currency(
+  const currencyCallback = useCallback(
+    (value: string) => {
+      value = value.replace(/[^\d-]/g, '');
+      if (value) {
+        const intValue = parseInt(value, 10);
+        value = (intValue / 100).toLocaleString('pt-BR', {
+          style: 'currency',
+          currency: 'BRL',
+          minimumFractionDigits: decimalScale,
+          maximumFractionDigits: decimalScale,
+        });
+        return value;
+      } else {
+        return (value = (0).toLocaleString('pt-BR', {
+          style: 'currency',
+          currency: 'BRL',
+          minimumFractionDigits: decimalScale,
+          maximumFractionDigits: decimalScale,
+        }));
+      }
+    },
+    [decimalScale]
+  );
+
+  const treatedDefaultValue = currencyCallback(
     Number(String(defaultValue))?.toFixed(decimalScale)
   );
   const [value, setValue] = useState(treatedDefaultValue || '');
+
 
   useEffect(() => {
     registerField({
@@ -28,31 +53,11 @@ export function WInputCurrency({
         return cleanValue;
       },
       setValue: (_, newValue) => {
-        setValue(currency(newValue));
+        setValue(currencyCallback(newValue));
       },
     });
-  }, [registerField, fieldName, value]);
+  }, [registerField, fieldName, value, currencyCallback]);
 
-  function currency(value: string) {
-    value = value.replace(/[^\d-]/g, '');
-    if (value) {
-      const intValue = parseInt(value, 10);
-      value = (intValue / 100).toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-        minimumFractionDigits: decimalScale,
-        maximumFractionDigits: decimalScale,
-      });
-      return value;
-    } else {
-      return (value = (0).toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-        minimumFractionDigits: decimalScale,
-        maximumFractionDigits: decimalScale,
-      }));
-    }
-  }
   return (
     <TextField
       {...rest}
@@ -64,7 +69,7 @@ export function WInputCurrency({
       helperText={error}
       value={value}
       onChange={(e) => {
-        setValue(currency(e.target.value));
+        setValue(currencyCallback(e.target.value));
         rest.onChange?.(e);
       }}
       onKeyDown={(e) => {
