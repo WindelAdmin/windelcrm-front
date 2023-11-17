@@ -57,7 +57,7 @@ export function LayoutSidebarAppBar({ children }: LayoutSidebarAppBarProps) {
             fontWeight={600}
             text={'Soulbyte Studio'}
             color={themeName === 'light'
-              ? LightTheme.palette.deepGrey.light
+              ? LightTheme.palette.deepGrey.dark
               : DarkTheme.palette.deepGrey.main}
           />
         <BoxButtons

@@ -49,7 +49,7 @@ export function AppBarDesktop({ open, children }: AppBarDesktopProps) {
           themeName === 'light'
             ? LightTheme.palette.background.default
             : DarkTheme.palette.background.default,
-        height: '5rem',
+        height: '4rem',
         borderBottom: '1px solid',
         borderBottomColor:
           themeName === 'light'
