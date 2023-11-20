@@ -10,13 +10,13 @@ import { UserProps } from './User.context';
 export const cookiesUser = {
   windelcrmToken: 'windelcrm.token',
   windelcrmUser: 'windelcrm.user',
-}
+};
 
 export interface AuthContextProps extends UserProps {
   authenticate: (
     email: string,
     password: string,
-    companyId?:number
+    companyId?: number
   ) => Promise<void>;
   logout: () => void;
   closeUserNotFoundModal: () => void;
@@ -24,7 +24,9 @@ export interface AuthContextProps extends UserProps {
   closeUserUnauthorizedModal: () => void;
 }
 
-export const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
+export const AuthContext = createContext<AuthContextProps>(
+  {} as AuthContextProps
+);
 
 export interface AuthProviderProps {
   children: ReactNode;
@@ -40,8 +42,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [companyInfo, setCompanyInfo] = useState('');
 
   useEffect(() => {
-    const { [cookiesUser.windelcrmToken]: token, [cookiesUser.windelcrmUser]: userCookies } =
-      parseCookies();
+    const {
+      [cookiesUser.windelcrmToken]: token,
+      [cookiesUser.windelcrmUser]: userCookies,
+    } = parseCookies();
     if (token && userCookies) {
       if (pathname === '/') router.push('/dashboard/');
     }
@@ -52,15 +56,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     password: string,
     companyId?: number
   ) {
-    
     const response = await api.post('/login/', {
       email: await encrypt(email),
       password: await encrypt(password),
-      companyId: companyId
+      companyId: companyId,
     });
-    console.log(response)
+
+    const responsData = response.data;
+
     if (response.status === 200) {
-      
       const payload = { token: response.data.token, data: response.data };
       setUser(payload.data);
       setCookie(undefined, cookiesUser.windelcrmToken, payload.token, {
@@ -70,7 +74,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setCookie(
         undefined,
         cookiesUser.windelcrmUser,
-        await encrypt(JSON.stringify(response.data)),
+        await encrypt(
+          JSON.stringify({
+            userData: responsData.userData,
+            companyData: responsData.companyData,
+          })
+        ),
         {
           maxAge: 60 * 60 * 9,
           path: '/',
@@ -80,22 +89,22 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         router.push('/dashboard');
       }, 3000);
     } else {
-    if (response.status === 404) {
+      if (response.status === 404) {
         setUserNotFound(true);
       } else if (response.status === 401) {
         setUserUnauthorized(true);
-      } else{
-         setHasAuthError(true);
+      } else {
+        setHasAuthError(true);
       }
     }
   }
 
   async function logout() {
     const { [cookiesUser.windelcrmUser]: userCookie } = parseCookies();
-    
+
     if (userCookie) {
       const user = JSON.parse(await decrypt(userCookie));
-     /*  await api.patch(`user/${user.id}`, {
+      /*  await api.patch(`user/${user.id}`, {
         isLogged: false,
       }); */
     }

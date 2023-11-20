@@ -6,6 +6,7 @@ import { SnackBarProvider } from '../Toast.context';
 import { ToggleDrawerProvider } from '../ToggleDrawer.context';
 import { ToggleDrawerMobileProvider } from '../ToggleDrawerMobile.context';
 import { UserProvider } from '../User.context';
+import { CompanyProvider } from '../UserContextCompany';
 import NextAppDirEmotionCacheProvider from './EmotionCache';
 import { AppThemeProvider } from './ThemeContext';
 
@@ -21,10 +22,12 @@ export default function ThemeRegistry({
           <ToggleDrawerProvider>
             <ToggleDrawerMobileProvider>
               <UserProvider>
+                <CompanyProvider>
                 <SnackBarProvider>
                   <CssBaseline />
                   {children}
                 </SnackBarProvider>
+                </CompanyProvider>
               </UserProvider>
             </ToggleDrawerMobileProvider>
           </ToggleDrawerProvider>

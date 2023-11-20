@@ -1,28 +1,37 @@
 'use client';
 import { decrypt } from '@/services/CryptoService/crypto.service';
 import { parseCookies } from 'nookies';
-import { ReactNode, createContext, useCallback, useState } from 'react';
+import {
+  ReactNode,
+  createContext,
+  useEffect,
+  useState
+} from 'react';
 import { CompanyProviderProps } from '../hooks/UseInfoCompany.hook';
 
 export interface CompanyProviderContextProps {
-  children: ReactNode
+  children: ReactNode;
 }
- 
-export const CompanyContext = createContext({
-  
-});
+
+export const CompanyContext = createContext({});
 
 export function CompanyProvider({ children }: CompanyProviderContextProps) {
   const [infoCompany, setInfoCompany] = useState<CompanyProviderProps | null>();
 
-useCallback(async () => {
-     const { 'nextauth.user': userCookies } = parseCookies();
-     if (userCookies) {
-      const decrypted = await decrypt(userCookies)
-      const { company } = JSON.parse(decrypted);
-      setInfoCompany(company);
+  useEffect(() => {
+    const { 'windelcrm.user': userCookies } = parseCookies();
+    if (userCookies) {
+      decrypt(userCookies).then((decrypted) => {
+        const { companyData } = JSON.parse(decrypted);
+        setInfoCompany(companyData);
+      });
     }
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    console.log(infoCompany);
+    
+  }, [infoCompany])
 
   return (
     <CompanyContext.Provider value={{ infoCompany }}>

@@ -54,12 +54,10 @@ export function LayoutSidebarAppBar({ children }: LayoutSidebarAppBarProps) {
           <TypographyTitle
             fontSize="1.2rem"
             fontWeight={600}
-            text={'Soulbyte Studio'}
-            color={
-              themeName === 'light'
-                ? LightTheme.palette.deepGrey.dark
-                : DarkTheme.palette.deepGrey.main
-            }
+            text={company?.name}
+            color={themeName === 'light'
+              ? LightTheme.palette.deepGrey.dark
+              : DarkTheme.palette.deepGrey.main}
           />
           <BoxButtons
             isFullScreen={isFullScreen}
