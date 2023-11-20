@@ -16,8 +16,7 @@ export interface AuthContextProps extends UserProps {
   authenticate: (
     email: string,
     password: string,
-    setBackdrop: any,
-    backdrop: boolean
+    companyId?:number
   ) => Promise<void>;
   logout: () => void;
   closeUserNotFoundModal: () => void;
@@ -38,7 +37,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [userNotFound, setUserNotFound] = useState(false);
   const [hasAuthError, setHasAuthError] = useState(false);
   const [userUnauthorized, setUserUnauthorized] = useState(false);
-  const [enterpriseInfo, setEnterpriseInfo] = useState('');
+  const [companyInfo, setCompanyInfo] = useState('');
 
   useEffect(() => {
     const { [cookiesUser.windelcrmToken]: token, [cookiesUser.windelcrmUser]: userCookies } =
@@ -51,16 +50,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   async function authenticate(
     email: string,
     password: string,
-    setBackdrop: any
+    companyId?: number
   ) {
     
     const response = await api.post('/login/', {
       email: await encrypt(email),
       password: await encrypt(password),
+      companyId: companyId
     });
 
     if (response.status === 200) {
-      setBackdrop(true);
+      
       const payload = { token: response.data.token, data: response.data };
       setUser(payload.data);
       setCookie(undefined, cookiesUser.windelcrmToken, payload.token, {
@@ -80,7 +80,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         router.push('/dashboard');
       }, 3000);
     } else {
-      setBackdrop(false);
+      
     if (response.status === 404) {
         setUserNotFound(true);
       } else if (response.status === 401) {
@@ -135,7 +135,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         userNotFound,
         hasAuthError,
         userUnauthorized,
-        enterpriseInfo,
+        companyInfo,
         closeUserNotFoundModal,
         closeHasAuthErrorModal,
         closeUserUnauthorizedModal,

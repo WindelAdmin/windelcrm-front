@@ -7,8 +7,6 @@ export async function middleware(request: NextRequest) {
   if (isBot) {
     return NextResponse.rewrite(new URL('/logout', request.url));
   }
-
-  // Lista de rotas que não requerem verificação de token
   const publicRoutes = [
     '/forgot',
     '/logout',
@@ -20,11 +18,9 @@ export async function middleware(request: NextRequest) {
     '/favicon.ico',
     '/logo/logoW.svg',
     '/policy',
-    '/dashboard'
   ];
 
   const path = request.nextUrl.pathname;
-//static next Routes -> required
   if (
     publicRoutes.includes(path) ||
     path.startsWith('/_next/') ||
@@ -32,15 +28,16 @@ export async function middleware(request: NextRequest) {
   ) {
     return NextResponse.next();
   } else {
-    const token = request.cookies.get('nextauth.token');
-    const user = request.cookies.get('nextauth.user');
-    console.log('token',token);
+    const token = request.cookies.get('windelcrm.token');
+    const user = request.cookies.get('windelcrm.user');
+  
     
     const decryptedUser =
     user && JSON.parse(await decrypt(user.value));
     if (!token) {
       return NextResponse.rewrite(new URL('/logout', request.url));
     }
+    console.log(decryptedUser)
     if (path.includes('form')) {
       const isEdit = /\/form\/\d+/;
       if (
@@ -51,6 +48,7 @@ export async function middleware(request: NextRequest) {
           new URL('/error/notAuthorized', request.url)
         );
       }
+      
     }
   }
 }

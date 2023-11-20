@@ -25,7 +25,7 @@ export interface UserProps {
   userNotFound: boolean;
   hasAuthError: boolean;
   userUnauthorized: boolean;
-  enterpriseInfo: string;
+  companyInfo: string;
 }
 
 export function UserProvider({ children }: UserProviderContextProps) {
