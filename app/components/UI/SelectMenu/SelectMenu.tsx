@@ -13,7 +13,6 @@ export default function SelectMenu({data}:SelectMenuProps) {
   const open = Boolean(anchorEl);
   const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
-    console.log(event.currentTarget)
   };
 
   const handleMenuItemClick = (

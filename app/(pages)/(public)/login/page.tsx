@@ -141,7 +141,6 @@ export default function AuthPage() {
     }
     return null;
   };
-  console.log(formRef.current?.getData);
   return (
     <AuthContainer>
       <ListMenu

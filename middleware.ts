@@ -30,14 +30,11 @@ export async function middleware(request: NextRequest) {
   } else {
     const token = request.cookies.get('windelcrm.token');
     const user = request.cookies.get('windelcrm.user');
-  
-    
-    const decryptedUser =
-    user && JSON.parse(await decrypt(user.value));
+
+    const decryptedUser = user && JSON.parse(await decrypt(user.value));
     if (!token) {
       return NextResponse.rewrite(new URL('/logout', request.url));
     }
-    console.log(decryptedUser)
     if (path.includes('form')) {
       const isEdit = /\/form\/\d+/;
       if (
@@ -48,7 +45,6 @@ export async function middleware(request: NextRequest) {
           new URL('/error/notAuthorized', request.url)
         );
       }
-      
     }
   }
 }

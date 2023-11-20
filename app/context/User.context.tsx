@@ -7,16 +7,20 @@ import { ReactNode, createContext, useEffect, useState } from 'react';
 export const UserContext = createContext({});
 
 export interface UserProviderProps {
-  id: string
-  email: string
-  companyId: number
-  name: string,
-  permissions: {id: number, code: string, description: string, type: string}[]
-  
+  id: string;
+  email: string;
+  companyId: number;
+  name: string;
+  permissions: {
+    id: number;
+    code: string;
+    description: string;
+    type: string;
+  }[];
 }
 
 export interface UserProviderContextProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export interface UserProps {
@@ -35,12 +39,9 @@ export function UserProvider({ children }: UserProviderContextProps) {
     const { 'nextauth.user': userCookies } = parseCookies();
     if (userCookies) {
       async () => {
-        const decrypted = await decrypt(userCookies)
-        console.log("decript",decrypted);
-        
+        const decrypted = await decrypt(userCookies);
         setInfoUser(JSON.parse(decrypted));
-      }
-      
+      };
     }
   }, []);
 
