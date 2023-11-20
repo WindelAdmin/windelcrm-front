@@ -1,8 +1,5 @@
 import { WModal } from '@/app/components/UI/Modal/Modal';
-import { CompanyContext } from '@/app/context/UserContextCompany';
 import { useAuth } from '@/app/hooks/UseAuth.hook';
-import { InfoCompanyProps } from '@/app/hooks/UseInfoCompany.hook';
-import { encrypt } from '@/services/CryptoService/crypto.service';
 import {
   Box,
   List,
@@ -10,8 +7,6 @@ import {
   ListItemButton,
   ListItemText,
 } from '@mui/material';
-import { useState, useContext, SetStateAction } from 'react';
-
 interface ListMenuProps {
   items: Array<{ id: number; name: string; cnpj: string }>;
   user: { email: string; password: string };
@@ -21,12 +16,7 @@ interface ListMenuProps {
 export function ListMenu({ items, user, visible }: ListMenuProps) {
   const auth = useAuth();
   async function handleClickSelectCompany(newCompanyId: number) {
-    
-    await auth.authenticate(
-      user.email,
-      user.password,
-      newCompanyId
-    );
+    await auth.authenticate(user.email, user.password, newCompanyId);
   }
   return (
     <WModal title="Seleção de empresa" open={visible}>

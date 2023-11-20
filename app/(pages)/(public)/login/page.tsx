@@ -40,29 +40,24 @@ export default function AuthPage() {
   const auth = useAuth();
   const { formRef } = useWForm();
   const [backdrop, setBackdrop] = useState(false);
-  const [ listMenuItems, setListMenuItems] = useState([])
-  const [listMenuVisible, setListMenuVisible ] = useState(false)
+  const [listMenuItems, setListMenuItems] = useState([]);
+  const [listMenuVisible, setListMenuVisible] = useState(false);
   const handleSignIn: SubmitHandler<SignInProps> = (values) => {
     signInSchema
       .validate(values, { abortEarly: false })
       .then(async () => {
-      const response = await api.get('/preLogin',{
-        params:{
-          email: await encrypt(values.email),
-          password: await encrypt(values.password)
+        const response = await api.get('/preLogin', {
+          params: {
+            email: await encrypt(values.email),
+            password: await encrypt(values.password),
+          },
+        });
+        if (response.data.companies.length !== 1) {
+          await auth.authenticate(values.email, values.password);
+        } else {
+          setListMenuItems(response.data.companies);
+          setListMenuVisible(true);
         }
-      })
-      if(response.data.companies.length !==1 ){
-        await auth.authenticate(
-          values.email,
-          values.password,
-          
-        );
-      }else{
-        setListMenuItems(response.data.companies)
-        setListMenuVisible(true)
-      }
-      
       })
       .catch((errors: yup.ValidationError) => {
         setErros({ formRef, errors });
@@ -146,12 +141,14 @@ export default function AuthPage() {
     }
     return null;
   };
-console.log(formRef.current?.getData)
+  console.log(formRef.current?.getData);
   return (
     <AuthContainer>
-      <ListMenu items={listMenuItems} user={formRef.current?.getData()as {email:string,password:string}} visible={listMenuVisible}/>
-
-
+      <ListMenu
+        items={listMenuItems}
+        user={formRef.current?.getData() as { email: string; password: string }}
+        visible={listMenuVisible}
+      />
       {displayModal()}
       <WBackdrop open={backdrop} />
       <Grid item xs={12} sm={12} md={6} lg={5}>
