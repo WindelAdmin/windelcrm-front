@@ -6,6 +6,7 @@ const nextConfig = {
     },
   },
   env: {
+    PORT: process.env.PORT,
     HOST: process.env.HOST,
     CRYPTO_KEY: process.env.CRYPTO_KEY
   },
