@@ -52,7 +52,7 @@ export default function AuthPage() {
             password: await encrypt(values.password),
           },
         });
-        if (response.data.companies.length !== 1) {
+        if (response.data.companies.length === 1) {
           await auth.authenticate(values.email, values.password);
         } else {
           setListMenuItems(response.data.companies);

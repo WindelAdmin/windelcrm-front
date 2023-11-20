@@ -7,7 +7,7 @@ import { useState } from 'react';
 import React from 'react';
 import { SelectMenuProps } from './SelectMenu.Interface';
 
-export default function SelectMenu({data}:SelectMenuProps) {
+export default function SelectMenu({ data }: SelectMenuProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const open = Boolean(anchorEl);
@@ -17,7 +17,7 @@ export default function SelectMenu({data}:SelectMenuProps) {
 
   const handleMenuItemClick = (
     event: React.MouseEvent<HTMLElement>,
-    index: number,
+    index: number
   ) => {
     setSelectedIndex(index);
     setAnchorEl(null);
@@ -44,7 +44,7 @@ export default function SelectMenu({data}:SelectMenuProps) {
           onClick={handleClickListItem}
         >
           <ListItemText
-            primary= {data[selectedIndex].name}
+            primary={data[selectedIndex].name}
             secondary={data[selectedIndex].cnpj}
           />
         </ListItem>
