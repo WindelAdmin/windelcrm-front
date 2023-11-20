@@ -8,7 +8,9 @@ export interface CompanyProviderContextProps {
   children: ReactNode
 }
  
-export const CompanyContext = createContext({});
+export const CompanyContext = createContext({
+  
+});
 
 export function CompanyProvider({ children }: CompanyProviderContextProps) {
   const [infoCompany, setInfoCompany] = useState<CompanyProviderProps | null>();

@@ -58,7 +58,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       password: await encrypt(password),
       companyId: companyId
     });
-
+    console.log(response)
     if (response.status === 200) {
       
       const payload = { token: response.data.token, data: response.data };
@@ -80,7 +80,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         router.push('/dashboard');
       }, 3000);
     } else {
-      
     if (response.status === 404) {
         setUserNotFound(true);
       } else if (response.status === 401) {
@@ -112,7 +111,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setUser(null);
     router.push('/');
   }
-
 
   const closeUserNotFoundModal = () => {
     setUserNotFound(false);

@@ -42,6 +42,7 @@ export default function AuthPage() {
   const [backdrop, setBackdrop] = useState(false);
   const [listMenuItems, setListMenuItems] = useState([]);
   const [listMenuVisible, setListMenuVisible] = useState(false);
+
   const handleSignIn: SubmitHandler<SignInProps> = (values) => {
     signInSchema
       .validate(values, { abortEarly: false })
@@ -52,12 +53,13 @@ export default function AuthPage() {
             password: await encrypt(values.password),
           },
         });
-        if (response.data.companies.length === 1) {
+        if (response.data.companies.length  === 1) {
           await auth.authenticate(values.email, values.password);
         } else {
           setListMenuItems(response.data.companies);
           setListMenuVisible(true);
         }
+        
       })
       .catch((errors: yup.ValidationError) => {
         setErros({ formRef, errors });
@@ -144,6 +146,7 @@ export default function AuthPage() {
   return (
     <AuthContainer>
       <ListMenu
+      setBackdrop={setBackdrop}
         items={listMenuItems}
         user={formRef.current?.getData() as { email: string; password: string }}
         visible={listMenuVisible}

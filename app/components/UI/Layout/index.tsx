@@ -21,7 +21,6 @@ import { ToggleDrawerMobile } from './Header/ToggleDrawerMobile';
 import { LayoutSidebarAppBarProps } from './Layout.Interface';
 import { BoxButtons } from './boxButtons';
 
-
 export function LayoutSidebarAppBar({ children }: LayoutSidebarAppBarProps) {
   const company = useInfoCompany();
   const { open } = useToggleDrawer();
@@ -56,11 +55,13 @@ export function LayoutSidebarAppBar({ children }: LayoutSidebarAppBarProps) {
             fontSize="1.2rem"
             fontWeight={600}
             text={'Soulbyte Studio'}
-            color={themeName === 'light'
-              ? LightTheme.palette.deepGrey.dark
-              : DarkTheme.palette.deepGrey.main}
+            color={
+              themeName === 'light'
+                ? LightTheme.palette.deepGrey.dark
+                : DarkTheme.palette.deepGrey.main
+            }
           />
-        <BoxButtons
+          <BoxButtons
             isFullScreen={isFullScreen}
             toggleFullScreen={toggleFullScreen}
             mobile={false}
@@ -108,7 +109,7 @@ export function LayoutSidebarAppBar({ children }: LayoutSidebarAppBarProps) {
             overflow: { xs: 'inherit', sm: 'inherit', md: 'auto' },
           }}
         >
-          <Toolbar sx={{mb: 5}}/>
+          <Toolbar sx={{ mb: 5 }} />
           {children}
         </Box>
       </Box>
