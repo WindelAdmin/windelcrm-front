@@ -1,27 +1,22 @@
 'use client';
-import { ReactNode, createContext, useEffect, useState } from 'react';
+import { ReactNode, createContext, useEffect } from 'react';
 
 import { api } from '@services/ApiService/axios.service';
-import { decrypt, encrypt } from '@services/CryptoService/crypto.service';
+import { encrypt } from '@services/CryptoService/crypto.service';
 import { usePathname, useRouter } from 'next/navigation';
 import nookies, { parseCookies, setCookie } from 'nookies';
-import { UserProps } from './User.context';
+import { useBackdrop } from '../hooks/UseBackdrop.hook';
+import { useSnackBar } from '../hooks/UseToast.hook';
+import { getUserCookie } from '../services/CookieService/Cookie.service';
+import { CookiesEnum } from '../shared/cookies/Cookies.enum';
 
-export const cookiesUser = {
-  windelcrmToken: 'windelcrm.token',
-  windelcrmUser: 'windelcrm.user',
-};
-
-export interface AuthContextProps extends UserProps {
+export interface AuthContextProps {
   authenticate: (
     email: string,
     password: string,
     companyId?: number
   ) => Promise<void>;
   logout: () => void;
-  closeUserNotFoundModal: () => void;
-  closeHasAuthErrorModal: () => void;
-  closeUserUnauthorizedModal: () => void;
 }
 
 export const AuthContext = createContext<AuthContextProps>(
@@ -35,45 +30,44 @@ export interface AuthProviderProps {
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const router = useRouter();
   const pathname = usePathname();
-  const [user, setUser] = useState<UserProps | null>();
-  const [userNotFound, setUserNotFound] = useState(false);
-  const [hasAuthError, setHasAuthError] = useState(false);
-  const [userUnauthorized, setUserUnauthorized] = useState(false);
-  const [companyInfo, setCompanyInfo] = useState('');
+  const snackbar = useSnackBar()
+  const backdrop = useBackdrop()
 
   useEffect(() => {
     const {
-      [cookiesUser.windelcrmToken]: token,
-      [cookiesUser.windelcrmUser]: userCookies,
+      [CookiesEnum.windelcrmToken]: token,
+      [CookiesEnum.windelcrmUser]: userCookies,
     } = parseCookies();
     if (token && userCookies) {
       if (pathname === '/') router.push('/dashboard/');
     }
   }, [router, pathname]);
 
-  async function authenticate(
+async function authenticate(
     email: string,
     password: string,
     companyId?: number
   ) {
+
+    backdrop.openBackdrop()
+    
     const response = await api.post('/login/', {
       email: await encrypt(email),
       password: await encrypt(password),
       companyId: companyId,
-    });
+    })
 
     const responsData = response.data;
 
     if (response.status === 200) {
       const payload = { token: response.data.token, data: response.data };
-      setUser(payload.data);
-      setCookie(undefined, cookiesUser.windelcrmToken, payload.token, {
+      setCookie(undefined, CookiesEnum.windelcrmToken, payload.token, {
         maxAge: 60 * 60 * 9,
         path: '/',
       });
       setCookie(
         undefined,
-        cookiesUser.windelcrmUser,
+        CookiesEnum.windelcrmUser,
         await encrypt(
           JSON.stringify({
             userData: responsData.userData,
@@ -85,67 +79,41 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           path: '/',
         }
       );
+
       setTimeout(() => {
         router.push('/dashboard');
-      }, 3000);
+      }, 1000);
     } else {
-      if (response.status === 404) {
-        setUserNotFound(true);
-      } else if (response.status === 401) {
-        setUserUnauthorized(true);
-      } else {
-        setHasAuthError(true);
+      if (response.status === 401) {
+        snackbar.showSnackBar("Ops", "Usuário ou senha incorreto(s).", 'error')
       }
     }
   }
 
   async function logout() {
-    const { [cookiesUser.windelcrmUser]: userCookie } = parseCookies();
-
+    const userCookie = await getUserCookie()
     if (userCookie) {
-      const user = JSON.parse(await decrypt(userCookie));
-      /*  await api.patch(`user/${user.id}`, {
+      await api.patch(`user/${userCookie.userData.id}`, {
         isLogged: false,
-      }); */
+      });
     }
-    nookies.destroy(null, cookiesUser.windelcrmToken, {
+    nookies.destroy(null, CookiesEnum.windelcrmToken, {
       path: '/',
     });
-    nookies.destroy(null, cookiesUser.windelcrmUser, {
+    nookies.destroy(null, CookiesEnum.windelcrmUser, {
       path: '/',
     });
     nookies.destroy(null, 'verifiedTheCertificate', {
       path: '/',
     });
-    setUser(null);
     router.push('/');
   }
-
-  const closeUserNotFoundModal = () => {
-    setUserNotFound(false);
-  };
-
-  const closeHasAuthErrorModal = () => {
-    setHasAuthError(false);
-  };
-
-  const closeUserUnauthorizedModal = () => {
-    setUserUnauthorized(false);
-  };
 
   return (
     <AuthContext.Provider
       value={{
-        ...user,
         authenticate,
         logout,
-        userNotFound,
-        hasAuthError,
-        userUnauthorized,
-        companyInfo,
-        closeUserNotFoundModal,
-        closeHasAuthErrorModal,
-        closeUserUnauthorizedModal,
       }}
     >
       {children}

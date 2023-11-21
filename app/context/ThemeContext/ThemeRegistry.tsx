@@ -2,6 +2,7 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import * as React from 'react';
 import { AuthProvider } from '../Auth.context';
+import { BackdropProvider } from '../Backdrop.context';
 import { SnackBarProvider } from '../Toast.context';
 import { ToggleDrawerProvider } from '../ToggleDrawer.context';
 import { ToggleDrawerMobileProvider } from '../ToggleDrawerMobile.context';
@@ -17,8 +18,10 @@ export default function ThemeRegistry({
 }) {
   return (
     <NextAppDirEmotionCacheProvider options={{ key: 'mui' }}>
+       <BackdropProvider>
       <AuthProvider>
         <AppThemeProvider>
+         
           <ToggleDrawerProvider>
             <ToggleDrawerMobileProvider>
               <UserProvider>
@@ -33,6 +36,7 @@ export default function ThemeRegistry({
           </ToggleDrawerProvider>
         </AppThemeProvider>
       </AuthProvider>
+      </BackdropProvider>
     </NextAppDirEmotionCacheProvider>
   );
 }
