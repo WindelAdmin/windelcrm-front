@@ -1,8 +1,8 @@
 'use client';
 import { ReactNode, createContext, useEffect, useState } from 'react';
 
-import { api } from '@/services/ApiService/axios.service';
-import { decrypt, encrypt } from '@/services/CryptoService/crypto.service';
+import { api } from '@services/ApiService/axios.service';
+import { decrypt, encrypt } from '@services/CryptoService/crypto.service';
 import { usePathname, useRouter } from 'next/navigation';
 import nookies, { parseCookies, setCookie } from 'nookies';
 import { UserProps } from './User.context';

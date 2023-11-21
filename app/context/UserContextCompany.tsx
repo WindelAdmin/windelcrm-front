@@ -1,5 +1,4 @@
 'use client';
-import { decrypt } from '@/services/CryptoService/crypto.service';
 import { parseCookies } from 'nookies';
 import {
   ReactNode,
@@ -8,6 +7,7 @@ import {
   useState
 } from 'react';
 import { CompanyProviderProps } from '../hooks/UseInfoCompany.hook';
+import { decrypt } from '../services/CryptoService/crypto.service';
 
 export interface CompanyProviderContextProps {
   children: ReactNode;

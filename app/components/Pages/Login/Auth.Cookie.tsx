@@ -1,7 +1,7 @@
 'use client';
 import { Link, Typography } from '@mui/material';
+import { cookieConsentment, cookieConsentmentPolicy } from '@shared/messages/AuthMessage.enum';
 
-import { cookieConsentment, cookieConsentmentPolicy } from '@/shared/messages/AuthMessage.enum';
 import CookieConsent from 'react-cookie-consent';
 
 export function AuthCookie() {

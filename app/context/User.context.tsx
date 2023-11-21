@@ -1,6 +1,6 @@
 'use client';
 
-import { decrypt } from '@/services/CryptoService/crypto.service';
+import { decrypt } from '@services/CryptoService/crypto.service';
 import { parseCookies } from 'nookies';
 import { ReactNode, createContext, useEffect, useState } from 'react';
 
