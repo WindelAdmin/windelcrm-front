@@ -1,6 +1,7 @@
 'use client';
 
 import { decrypt } from '@services/CryptoService/crypto.service';
+import { CookiesEnum } from '@shared/cookies/Cookies.enum';
 import { parseCookies } from 'nookies';
 import { ReactNode, createContext, useEffect, useState } from 'react';
 
@@ -8,9 +9,8 @@ export const UserContext = createContext({});
 
 export interface UserProviderProps {
   id: string;
-  email: string;
-  companyId: number;
   name: string;
+  email: string;
   permissions: {
     id: number;
     code: string;
@@ -23,24 +23,16 @@ export interface UserProviderContextProps {
   children: ReactNode;
 }
 
-export interface UserProps {
-  email?: string;
-  token?: string;
-  userNotFound: boolean;
-  hasAuthError: boolean;
-  userUnauthorized: boolean;
-  companyInfo: string;
-}
-
 export function UserProvider({ children }: UserProviderContextProps) {
   const [infoUser, setInfoUser] = useState<UserProviderProps | null>();
 
   useEffect(() => {
-    const { 'nextauth.user': userCookies } = parseCookies();
+    const { [CookiesEnum.windelcrmUser]: userCookies } = parseCookies();
     if (userCookies) {
       async () => {
         const decrypted = await decrypt(userCookies);
-        setInfoUser(JSON.parse(decrypted));
+        const { userData } = JSON.parse(decrypted)
+        setInfoUser(userData);
       };
     }
   }, []);

@@ -8,6 +8,7 @@ import {
 } from 'react';
 import { CompanyProviderProps } from '../hooks/UseInfoCompany.hook';
 import { decrypt } from '../services/CryptoService/crypto.service';
+import { CookiesEnum } from '../shared/cookies/Cookies.enum';
 
 export interface CompanyProviderContextProps {
   children: ReactNode;
@@ -19,7 +20,7 @@ export function CompanyProvider({ children }: CompanyProviderContextProps) {
   const [infoCompany, setInfoCompany] = useState<CompanyProviderProps | null>();
 
   useEffect(() => {
-    const { 'windelcrm.user': userCookies } = parseCookies();
+    const { [CookiesEnum.windelcrmUser]: userCookies } = parseCookies();
     if (userCookies) {
       decrypt(userCookies).then((decrypted) => {
         const { companyData } = JSON.parse(decrypted);
@@ -27,11 +28,6 @@ export function CompanyProvider({ children }: CompanyProviderContextProps) {
       });
     }
   }, []);
-
-  useEffect(() => {
-    console.log(infoCompany);
-    
-  }, [infoCompany])
 
   return (
     <CompanyContext.Provider value={{ infoCompany }}>
