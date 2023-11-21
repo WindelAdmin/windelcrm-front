@@ -55,10 +55,13 @@ export function LayoutSidebarAppBar({ children }: LayoutSidebarAppBarProps) {
             fontSize="1.2rem"
             fontWeight={600}
             text={company?.name}
-            color={themeName === 'light'
-              ? LightTheme.palette.deepGrey.dark
-              : DarkTheme.palette.deepGrey.main}
+            color={
+              themeName === 'light'
+                ? LightTheme.palette.deepGrey.dark
+                : DarkTheme.palette.deepGrey.main
+            }
           />
+
           <BoxButtons
             isFullScreen={isFullScreen}
             toggleFullScreen={toggleFullScreen}

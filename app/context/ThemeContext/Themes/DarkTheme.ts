@@ -267,5 +267,15 @@ export const DarkTheme = createTheme({
         },
       },
     },
+    MuiListItemText: {
+      defaultProps: {
+        primaryTypographyProps: {
+          color: grey[100]
+        },
+        secondaryTypographyProps: {
+          color: grey[400]
+        }
+      }
+    }
   },
 });

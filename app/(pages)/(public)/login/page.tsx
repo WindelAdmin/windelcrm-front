@@ -14,7 +14,7 @@ import { WButtonLoading } from '@/app/components/UI/Button/WButton.Loading';
 import { WInput } from '@/app/components/UI/Inputs/WInput';
 import { WInputPassword } from '@/app/components/UI/Inputs/WInputPassword';
 
-import { ListMenu } from '@/app/components/Pages/Login/modal/ListMenu';
+import { SelectCompanyModal } from '@/app/components/Pages/Login/modal/SelectCompanyModal';
 import { signInSchema } from '@/app/components/Pages/Login/schemas/Auth.schema';
 import { useAuth } from '@/app/hooks/UseAuth.hook';
 import { useEnableButton } from '@/app/hooks/UseEnableButton.hook';
@@ -76,7 +76,7 @@ export default function AuthPage() {
 
   return (
     <AuthContainer>
-      <ListMenu
+      <SelectCompanyModal
         items={listMenuItems}
         user={formRef.current?.getData() as { email: string; password: string }}
         visible={listMenuVisible}
