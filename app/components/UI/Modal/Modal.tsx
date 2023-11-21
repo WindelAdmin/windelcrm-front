@@ -8,6 +8,7 @@ import { WModalProps } from "./Modal.interface";
 ''
 export function WModal({
   open,
+  onClose,
   title,
   icon,
   children,
@@ -16,6 +17,7 @@ export function WModal({
   const { themeName } = useAppThemeContext();
   return (
     <Dialog
+      onClose={onClose}
       open={open}
       sx={{
         '& .MuiDialog-paper': {
@@ -30,7 +32,7 @@ export function WModal({
     >
       <Box
         sx={{
-          marginTop: '.5rem',
+          marginTop: '2rem',
           display: 'flex',
           alignItems: 'center',
           flexDirection: 'column',
@@ -50,7 +52,7 @@ export function WModal({
 
       <DialogContent
         sx={{
-          padding: 2,
+          padding: 1,
           borderRadius: '10px',
         }}
       >

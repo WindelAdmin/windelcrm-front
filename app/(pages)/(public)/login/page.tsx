@@ -38,7 +38,7 @@ export default function AuthPage() {
   const { formRef } = useWForm();
   const snackbar = useSnackBar();
   const [listMenuItems, setListMenuItems] = useState([]);
-  const [listMenuVisible, setListMenuVisible] = useState(false);
+  const [openModalSelectCompany, setOpenModalSelectCompany] = useState(false);
 
   const handleSignIn: SubmitHandler<SignInProps> = (values) => {
     signInSchema
@@ -56,7 +56,7 @@ export default function AuthPage() {
               await auth.authenticate(values.email, values.password)
             } else {
               setListMenuItems(response.data.companies);
-              setListMenuVisible(true);
+              setOpenModalSelectCompany(true);
             }
           })
           .catch((error: AxiosError) => {
@@ -79,7 +79,8 @@ export default function AuthPage() {
       <SelectCompanyModal
         items={listMenuItems}
         user={formRef.current?.getData() as { email: string; password: string }}
-        visible={listMenuVisible}
+        isOpen={openModalSelectCompany}
+        onClose={() => {setOpenModalSelectCompany(false)}}
       />
       <Grid item xs={12} sm={12} md={6} lg={5}>
         <Box

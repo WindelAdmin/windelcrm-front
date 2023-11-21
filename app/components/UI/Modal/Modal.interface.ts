@@ -1,8 +1,9 @@
-import { ReactElement, ReactNode } from 'react';
 import { DialogProps } from '@mui/material';
+import { ReactElement, ReactNode } from 'react';
 
 export interface WModalProps extends DialogProps {
   open: boolean;
+  onClose: () => void;
   icon?: ReactElement;
   title: string;
   children: ReactNode;

@@ -267,6 +267,16 @@ export const DarkTheme = createTheme({
         },
       },
     },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 5,
+          '&:hover': {
+            backgroundColor: grey[800]
+          }
+        }
+      }
+    },
     MuiListItemText: {
       defaultProps: {
         primaryTypographyProps: {
@@ -274,7 +284,7 @@ export const DarkTheme = createTheme({
         },
         secondaryTypographyProps: {
           color: grey[400]
-        }
+        },
       }
     }
   },
