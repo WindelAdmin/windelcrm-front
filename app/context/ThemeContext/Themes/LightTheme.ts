@@ -217,5 +217,25 @@ export const LightTheme = createTheme({
         },
       },
     },
+      MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 5,
+          '&:hover': {
+            backgroundColor: grey[200]
+          }
+        }
+      }
+    },
+    MuiListItemText: {
+      defaultProps: {
+        primaryTypographyProps: {
+          color: grey[900]
+        },
+        secondaryTypographyProps: {
+          color: grey[600]
+        },
+      }
+    }
   },
 });
