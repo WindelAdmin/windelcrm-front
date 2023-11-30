@@ -3,9 +3,8 @@ import { Box } from '@mui/material';
 import { PowerSettingsNewRounded } from '@mui/icons-material';
 
 import { AppBarAvatar } from './avatarHeader';
-import { FullScreen } from './fullScreen';
-import { Notifications } from './notifications';
-import { Settings } from './settings';
+import { Notifications } from './Notifications';
+import { Settings } from './Settings';
 
 import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
 import { LightTheme } from '@/app/context/ThemeContext/Themes/LightTheme';
@@ -36,12 +35,6 @@ export function BoxButtons({
       }}
     >
       <AppBarAvatar />
-      {!mobile && (
-        <FullScreen
-          isFullScreen={isFullScreen}
-          toggleFullScreen={toggleFullScreen}
-        />
-      )}
       <Notifications mobile={mobile} />
       <Settings mobile={mobile} />
       <WIconButton

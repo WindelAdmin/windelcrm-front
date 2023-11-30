@@ -31,12 +31,6 @@ export function Notifications({ mobile }: NotificationsProps) {
     []
   );
 
-
-  const handlePush = (values: any) => {
-    router.push(`/notifications?id=${values.id}`);
-    setOpenMenu(null);
-  };
-
   const isOpen = Boolean(openMenu);
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     setOpenMenu(e.currentTarget);

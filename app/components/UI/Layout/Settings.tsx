@@ -11,8 +11,6 @@ import { DrawerHelp } from './Header/DrawerSettings/DrawerHelp';
 import { DrawerNotifications } from './Header/DrawerSettings/DrawerNotifications';
 import { DrawerSettings } from './Header/DrawerSettings/DrawerSettings';
 
-
-
 interface SettingsProps {
   mobile: boolean;
 }

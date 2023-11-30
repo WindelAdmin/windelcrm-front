@@ -7,16 +7,18 @@ import { ReactNode, createContext, useEffect, useState } from 'react';
 
 export const UserContext = createContext({});
 
+export interface PermissionsProps {
+  type: string;
+  name: string;
+  status: boolean
+  subPermissions?: PermissionsProps[]
+}
+
 export interface UserProviderProps {
   id: string;
   name: string;
   email: string;
-  permissions: {
-    id: number;
-    code: string;
-    description: string;
-    type: string;
-  }[];
+  permissions: PermissionsProps[];
 }
 
 export interface UserProviderContextProps {

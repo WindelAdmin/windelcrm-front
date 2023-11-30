@@ -1,14 +1,15 @@
 'use client';
-import { ReactNode, createContext, useEffect } from 'react';
+import { ReactNode, createContext, useEffect, useState } from 'react';
 
 import { api } from '@services/ApiService/axios.service';
-import { encrypt } from '@services/CryptoService/crypto.service';
+import { decrypt, encrypt } from '@services/CryptoService/crypto.service';
 import { usePathname, useRouter } from 'next/navigation';
 import nookies, { parseCookies, setCookie } from 'nookies';
 import { useBackdrop } from '../hooks/UseBackdrop.hook';
 import { useSnackBar } from '../hooks/UseToast.hook';
 import { getUserCookie } from '../services/CookieService/Cookie.service';
 import { CookiesEnum } from '../shared/cookies/Cookies.enum';
+import { UserProviderProps } from './User.context';
 
 export interface AuthContextProps {
   authenticate: (
@@ -16,6 +17,8 @@ export interface AuthContextProps {
     password: string,
     companyId?: number
   ) => Promise<void>;
+  user: UserProviderProps | null | undefined;
+  isAuthenticated: boolean;
   logout: () => void;
 }
 
@@ -30,8 +33,10 @@ export interface AuthProviderProps {
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const router = useRouter();
   const pathname = usePathname();
-  const snackbar = useSnackBar()
-  const backdrop = useBackdrop()
+  const snackbar = useSnackBar();
+  const backdrop = useBackdrop();
+  const [user, setUser] = useState<UserProviderProps | null>();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const {
@@ -39,23 +44,26 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       [CookiesEnum.windelcrmUser]: userCookies,
     } = parseCookies();
     if (token && userCookies) {
-      if (pathname === '/') router.push('/dashboard/');
+      decrypt(userCookies).then((data) => {
+        setUser(JSON.parse(data).userData);
+        setIsAuthenticated(true);
+        if (pathname === '/') router.push('/dashboard/');
+      });
     }
   }, [router, pathname]);
 
-async function authenticate(
+  async function authenticate(
     email: string,
     password: string,
     companyId?: number
   ) {
+    backdrop.openBackdrop();
 
-    backdrop.openBackdrop()
-    
     const response = await api.post('/login/', {
       email: await encrypt(email),
       password: await encrypt(password),
       companyId: companyId,
-    })
+    });
 
     const responsData = response.data;
 
@@ -85,15 +93,15 @@ async function authenticate(
       }, 1000);
     } else {
       if (response.status === 401) {
-        snackbar.showSnackBar("Ops", "Usuário ou senha incorreto(s).", 'error')
+        snackbar.showSnackBar('Ops', 'Usuário ou senha incorreto(s).', 'error');
       }
     }
   }
 
   async function logout() {
-    const userCookie = await getUserCookie()
+    const userCookie = await getUserCookie();
     if (userCookie) {
-      await api.patch(`user/${userCookie.userData.id}`, {
+      await api.patch(`user/=${userCookie.userData.id}`, {
         isLogged: false,
       });
     }
@@ -113,6 +121,8 @@ async function authenticate(
     <AuthContext.Provider
       value={{
         authenticate,
+        user,
+        isAuthenticated,
         logout,
       }}
     >

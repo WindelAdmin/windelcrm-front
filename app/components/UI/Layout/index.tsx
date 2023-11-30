@@ -2,7 +2,7 @@
 import { Box, Paper, Toolbar } from '@mui/material';
 import { useState } from 'react';
 
-import { ToggleDrawerOpen } from './Header/toggleDrawerOpen';
+import { ToggleDrawerOpen } from './Header/ToggleDrawerOpen';
 import { SidebarMenu } from './Sidebar/MenuSidebar';
 
 import { DarkTheme } from '@/app/context/ThemeContext/Themes/DarkTheme';
@@ -13,13 +13,13 @@ import { useToggleDrawer } from '@/app/hooks/UseToggleDrawer.hook';
 import { TypographyTitle } from '../Typography/Typography.Title/WTypography.Title';
 import { AppBarDesktop } from './AppBar/Appbar.Desktop';
 import { AppBarMobile } from './AppBar/Appbar.Mobile';
+import { BoxButtons } from './BoxButtons';
 import { DrawerDesktop } from './Drawer/Drawer.Desktop';
 import { DrawerMobile } from './Drawer/Drawer.Mobile';
 import { HeaderSidebar } from './Header/Sidebar/Sidebar.Header.Desktop';
 import { HeaderSidebarMobile } from './Header/Sidebar/Sidebar.Header.Mobile';
 import { ToggleDrawerMobile } from './Header/ToggleDrawerMobile';
 import { LayoutSidebarAppBarProps } from './Layout.Interface';
-import { BoxButtons } from './boxButtons';
 
 export function LayoutSidebarAppBar({ children }: LayoutSidebarAppBarProps) {
   const company = useInfoCompany();
