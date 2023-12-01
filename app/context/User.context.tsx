@@ -8,10 +8,8 @@ import { ReactNode, createContext, useEffect, useState } from 'react';
 export const UserContext = createContext({});
 
 export interface PermissionsProps {
-  type: string;
+  type: 'R' | 'C' | 'A';
   name: string;
-  status: boolean
-  subPermissions?: PermissionsProps[]
 }
 
 export interface UserProviderProps {

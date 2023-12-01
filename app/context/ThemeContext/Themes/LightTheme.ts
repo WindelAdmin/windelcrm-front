@@ -5,11 +5,10 @@ import {
   blue,
   blueGrey,
   common,
-  deepPurple,
   grey,
   lightBlue,
   orange,
-  red,
+  red
 } from '@mui/material/colors';
 
 const quicksand = Quicksand({
@@ -28,15 +27,15 @@ declare module '@mui/material/TextField' {
 export const LightTheme = createTheme({
   palette: {
     primary: {
-      main: deepPurple[700],
-      light: deepPurple[600],
-      dark: deepPurple[800],
+      main: blue[700],
+      light: blue[600],
+      dark: blue[800],
       contrastText: common.white,
     },
     secondary: {
       main: blueGrey[700],
-      light: blueGrey[600],
-      dark: blueGrey[800],
+      light: blueGrey[400],
+      dark: blueGrey[900],
       contrastText: common.white,
     },
     info: {

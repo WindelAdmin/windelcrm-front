@@ -20,6 +20,7 @@ export async function middleware(request: NextRequest) {
   ];
 
   const path = request.nextUrl.pathname;
+  
   if (
     publicRoutes.includes(path) ||
     path.startsWith('/_next/') ||

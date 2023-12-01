@@ -93,7 +93,7 @@ export function WBreadcrumbs({ father, content }: BreadcrumbsProps) {
   const iconToRender = getIconToRender(father);
 
   return (
-    <Box paddingX='1rem' sx={{ pt: '1rem' }}>
+    <Box paddingX='1rem' sx={{ pt: '1rem', pb: '1rem' }}>
       <Breadcrumbs
         aria-label='breadcrumb'
         sx={{

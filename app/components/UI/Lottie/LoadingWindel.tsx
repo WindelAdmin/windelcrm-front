@@ -11,5 +11,5 @@ const style = {
 };
 
 export function LoadWindel() {
-  return <Lottie animationData={LoadingWindel} style={style} />;
+  return <Lottie animationData={LoadingWindel} autoPlay={true} style={style} />;
 }

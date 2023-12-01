@@ -1,42 +1,54 @@
 'use client';
-
+import PermissionHandler from '@/app/components/Handlers/Permission.handler';
+import { WBreadcrumbs } from '@/app/components/UI/Breadcrumbs/WBreadcrumbs';
+import { WButton } from '@/app/components/UI/Button/WButton';
+import { WButtonLoading } from '@/app/components/UI/Button/WButton.Loading';
+import { WInput } from '@/app/components/UI/Inputs/WInput';
 import { PageContainer } from '@/app/components/UI/PageContainer/Page.Container';
-import PermissionProvider, {
-  PermissionInfoProps,
-} from '@/app/context/Permission.context';
-import { useBackdrop } from '@/app/hooks/UseBackdrop.hook';
-import { Alert } from '@mui/material';
-import { useEffect } from 'react';
+import { useWForm } from '@/app/hooks/UseWForm.hook';
+import { ROUTE_DASHBOARD, ROUTE_DASHBOARD_BUTTON_EDIT } from '@/app/shared/consts/PermissionName';
+import { Container } from '@mui/material';
+import { SubmitHandler } from '@unform/core';
+import { Form } from '@unform/web';
 
 export default function Dashboard() {
-  const backdrop = useBackdrop();
+  const { formRef, handleEdit, handleSave } = useWForm();
 
-  useEffect(() => {
-    backdrop.closeBackdrop();
-  }, []);
-
-  const permissionInfoPropsaRoute = {
-    type: 'R',
-    name: 'page.dashboard',
-  } as PermissionInfoProps;
-
-const permissionInfoPropsaAction = {
-    type: 'C',
-    name: 'page.dashboard.button-random',
-  } as PermissionInfoProps;
-
-
+  const handleSubmit: SubmitHandler<{ email: string; password: string }> = (
+    values
+  ) => {
+    console.log(values);
+  };
   return (
-    <PageContainer>
-      <PermissionProvider componentInfo={permissionInfoPropsaRoute}>
-        <Alert color="info">
-          testando permissão de Rotas/Páginas<br></br>
-        </Alert>
-      </PermissionProvider>
-       <PermissionProvider componentInfo={permissionInfoPropsaAction}>
-              <Alert color="warning">testando permissão de componentes</Alert>
-       </PermissionProvider>
-      <br></br>
-    </PageContainer>
+      <PageContainer>
+        <WBreadcrumbs content="Dashboard" />
+        <Form
+          onSubmit={handleSubmit}
+          ref={formRef}
+          initialData={{ email: 'wesley', password: '123' }}
+        >
+          <WInput name="email" label="Email" />
+          <WInput name="password" label="Password" />
+          <WButtonLoading
+            color={'primary'}
+            textButton="Salvar"
+            type="submit"
+            loading={false}
+            sx={{ marginRight: '1rem' }}
+          />
+
+          <PermissionHandler restrictionMode='disabled'>
+            <Container>
+              <WButton name={ROUTE_DASHBOARD_BUTTON_EDIT} data-restriction-mode='disabled' color="secondary" textButton="Editar" />
+              <WButton name={ROUTE_DASHBOARD} color="secondary" textButton="Teste" />
+              <Container>
+                <WButton name={ROUTE_DASHBOARD_BUTTON_EDIT} data-restriction-mode='invisible' color="secondary" textButton="Teste 222" />
+                <WButton name={'button-4'} color="secondary" textButton="Teste" />
+              </Container>
+            </Container>
+          </PermissionHandler>
+        </Form>
+        <br></br>
+      </PageContainer>
   );
 }
