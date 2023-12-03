@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { decrypt } from '@services/CryptoService/crypto.service';
-import { CookiesEnum } from '@shared/cookies/Cookies.enum';
-import { parseCookies } from 'nookies';
-import { ReactNode, createContext, useEffect, useState } from 'react';
+import { decrypt } from "@services/CryptoService/crypto.service";
+import { CookiesEnum } from "@shared/cookies/Cookies.enum";
+import { parseCookies } from "nookies";
+import { ReactNode, createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext({});
 
 export interface PermissionsProps {
-  type: 'R' | 'C' | 'A';
+  type: "R" | "C";
   name: string;
 }
 
@@ -31,7 +31,7 @@ export function UserProvider({ children }: UserProviderContextProps) {
     if (userCookies) {
       async () => {
         const decrypted = await decrypt(userCookies);
-        const { userData } = JSON.parse(decrypted)
+        const { userData } = JSON.parse(decrypted);
         setInfoUser(userData);
       };
     }
