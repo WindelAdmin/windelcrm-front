@@ -1,8 +1,9 @@
+import PermissionableProps from '@/app/shared/interfaces/Permissionable.props';
 import { ButtonProps } from '@mui/material';
 import { ButtonTransitionProp } from '../IconButton/Button.Interface';
 
 
-export interface WButtonProps extends ButtonProps {
+export interface WButtonProps extends ButtonProps, PermissionableProps {
   variant?: 'contained' | 'outlined' | 'text';
   textButton: string;
   color:

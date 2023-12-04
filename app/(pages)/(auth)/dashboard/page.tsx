@@ -1,58 +1,18 @@
-"use client";
-import PermissionHandler from "@/app/components/Handlers/Permission.handler";
-import { WBreadcrumbs } from "@/app/components/UI/Breadcrumbs/WBreadcrumbs";
-import { WButton } from "@/app/components/UI/Button/WButton";
-import { WButtonLoading } from "@/app/components/UI/Button/WButton.Loading";
-import { WInput } from "@/app/components/UI/Inputs/WInput";
-import { PageContainer } from "@/app/components/UI/PageContainer/Page.Container";
-import { useWForm } from "@/app/hooks/UseWForm.hook";
-import { ROUTE_DASHBOARD_BUTTON_EDIT } from "@/app/shared/consts/PermissionName";
-import { Container } from "@mui/material";
-import { SubmitHandler } from "@unform/core";
-import { Form } from "@unform/web";
+'use client';
+import PermissionHandler from '@/app/components/Handlers/Permission.handler';
+import { WBreadcrumbs } from '@/app/components/UI/Breadcrumbs/WBreadcrumbs';
+import { PageContainer } from '@/app/components/UI/PageContainer/Page.Container';
+import { useWForm } from '@/app/hooks/UseWForm.hook';
+import { Typography } from '@mui/material';
 
 export default function Dashboard() {
-  const { formRef, handleEdit, handleSave } = useWForm();
+  const {formRef} = useWForm()
 
-  const handleSubmit: SubmitHandler<{ email: string; password: string }> = (
-    values
-  ) => {
-    console.log(values);
-  };
   return (
     <PermissionHandler>
       <PageContainer>
         <WBreadcrumbs content="Dashboard" />
-        <Form
-          onSubmit={handleSubmit}
-          ref={formRef}
-          initialData={{ email: "wesley", password: "123" }}
-        >
-          <WInput name="email" label="Email" />
-          <WInput name="password" label="Password" />
-          <WButtonLoading
-            color={"primary"}
-            textButton="Salvar"
-            type="submit"
-            loading={false}
-            sx={{ marginRight: "1rem" }}
-          />
-
-          <Container>
-            <WButton
-              data-permission={{
-                name: ROUTE_DASHBOARD_BUTTON_EDIT,
-                mode: "disabled",
-              }}
-              color="secondary"
-              textButton="Editar"
-            />
-            <Container>
-              <WButton name={"button-4"} color="secondary" textButton="Teste" />
-            </Container>
-          </Container>
-        </Form>
-        <br></br>
+          <Typography>Bem vindo ao CRM :)</Typography>
       </PageContainer>
     </PermissionHandler>
   );

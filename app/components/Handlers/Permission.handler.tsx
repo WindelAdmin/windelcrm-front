@@ -1,8 +1,8 @@
-import { useAuth } from "@/app/hooks/UseAuth.hook";
-import { useEffect, useState } from "react";
+import { useAuth } from '@/app/hooks/UseAuth.hook';
+import { useEffect, useState } from 'react';
 
 export interface IPermissionInfo {
-  type: "R" | "C" | "A";
+  type: 'R' | 'C';
   name: string;
 }
 
@@ -14,6 +14,10 @@ export default function PermissionHandler({
   children,
 }: PermissionsHanlderProps) {
   const { user } = useAuth();
+
+  const [childrenResolved, setChildrenResolved] = useState<JSX.Element | null>(
+    null
+  );
 
   const checkComponents = (child: JSX.Element) => {
     const childList =
@@ -30,17 +34,18 @@ export default function PermissionHandler({
         c = checkComponents(c);
       }
 
-      if (Object.hasOwn(props, "data-permission")) {
-        const permission = findPermission(props["data-permission"]?.name);
+      if (props && props.permissionable) {
+        const permission = findPermission(props.permissionable.name);
         if (permission) {
-          if (props["data-permission"]?.mode === "disabled") {
+          if (props.permissionable.isDisabled) {
             c = {
               ...c,
               props: {
                 ...c.props,
                 style: {
+                  ...props.style,
                   opacity: 0.5,
-                  pointerEvents: "none",
+                  pointerEvents: 'none',
                 },
               },
             };
@@ -65,15 +70,11 @@ export default function PermissionHandler({
     return user?.permissions?.find((p) => p.name === name);
   };
 
-  const [childrenResolve, setChildrenResolved] = useState<JSX.Element | null>(
-    null
-  );
-
   useEffect(() => {
     if (user) {
       setChildrenResolved(checkComponents(children));
     }
   }, [user]);
 
-  return <>{childrenResolve}</>;
+  return <>{childrenResolved}</>;
 }

@@ -1,7 +1,9 @@
+import PermissionableProps from '@/app/shared/interfaces/Permissionable.props';
 import {
   AutocompleteProps,
   OutlinedInputProps,
   OutlinedTextFieldProps,
+  StandardTextFieldProps,
   TextFieldProps,
 } from '@mui/material';
 import { ReactNode } from 'react';
@@ -11,7 +13,7 @@ export type DateDesktopMobileProps = OutlinedTextFieldProps & {
   name: string;
 };
 
-export type WTextFieldProps = TextFieldProps & {
+export interface WTextFieldProps extends StandardTextFieldProps, PermissionableProps{
   name: string;
   label: string;
   size?: 'small' | 'medium';
